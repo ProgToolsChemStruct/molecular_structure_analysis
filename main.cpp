@@ -5,6 +5,8 @@
 
 //Hannah's Prototypes
 
+//Kate's Prototypes
+
 int (main)
 {
 using nedit file...
