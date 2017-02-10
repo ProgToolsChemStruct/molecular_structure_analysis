@@ -5,7 +5,7 @@
 
 //Hannah's Prototypes
 
-//Kate's Prototypes
+int atomic_distance (int distance); //Kate's Prototype: defines atomic distance as integer
 
 int (main)
 {
