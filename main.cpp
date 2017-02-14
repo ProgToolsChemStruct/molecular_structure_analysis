@@ -5,7 +5,7 @@
 
 //Hannah's Prototypes
 
-int atomic_distance (int x, int y, int z); //Kate's Prototype: defines atomic distance as combination of x, y, z coordinates
+int atomic_distance (int atom_dist_x, int atom_dist_y, int atom_dist_z); //Kate's Prototype: defines atomic distance as combination of x, y, z coordinates
 
 int (main)
 {
