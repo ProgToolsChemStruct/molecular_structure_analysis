@@ -47,6 +47,18 @@ int main() {
 	inputfile.close();
 	cout << "Search Complete";
 	return 0;
+	
+	//Open the file bond_angle.cpp and check that it opened
+	ofstream bond_angle;
+	bond_angle.open("bond_angle.cpp");
+	if (!bond_angle.is_open()) {
+		cout << "Error: Unable to open bond_angle file.";
+		return 1;
+	}
+	//Close the file bond_angle.cpp
+	bond_angle.close("bond_angle.cpp");
+	cout << "Bond angle calculation complete.";
+	return 0;
 }
 
 
