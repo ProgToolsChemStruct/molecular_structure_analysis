@@ -30,7 +30,7 @@ int atomic_distance (int atom_dist_x, int atom_dist_y, int atom_dist_z); //Defin
 int main() {
 	ifstream inputfile;
 	string line;
-	string header = "OPTIMIZED PARAMETERS";
+	string header = "                           !   Optimized Parameters   !";
 
 	//Open the input file and check that it opened
 	inputfile.open("gaussian_opt_file");
