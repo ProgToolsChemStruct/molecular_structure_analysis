@@ -27,13 +27,9 @@ int main() {
 		}
 	}
 	inputfile.close();
+	cout << "Search Complete";
 	return 0;
 }
-
-
-
-
-
 
 
 	//const string gaussian_output::HEADER_STRING = "OPTIMIZED PARAMETERS";
