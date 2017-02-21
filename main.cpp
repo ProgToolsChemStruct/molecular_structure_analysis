@@ -3,6 +3,7 @@
 #include <fstream>
 
 #include "main.h"
+#include "bond_angle.cpp"
 
 using namespace std;
 /**
@@ -24,8 +25,6 @@ using namespace std;
  * angles.  Input of the file to be analyzed will result in an output file listing all the structural
  * information of the biomolecule.
  */
-
-int atomic_distance (int atom_dist_x, int atom_dist_y, int atom_dist_z); //Defines atomic distance as combination of x, y, z coordinates
 
 int main() {
 	ifstream inputfile;
