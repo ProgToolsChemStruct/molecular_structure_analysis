@@ -28,41 +28,56 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     ifstream inputfile;
+    ofstream logfile;
+    unsigned int count_line = 0;
     string line;
-    string header = "                           !   Optimized Parameters   !";
+    string header1 = "Optimized Parameters";
+    string header2 = "Standard orientation:";
+    string print(string);
 
     //Check that input file was directed into the command line
     if (argc < 2) {
         cout << "Error: Inputfile not specified in command line\n";
-        return 0;
+        return 1;
     }
 
     //Open the input file and check that it opened
     inputfile.open(argv[1]);
     if (!inputfile.is_open()) {
         cout << "Error: Unable to open the input file.";
-        return 1;
-    }
-
-    //Generate a log file and check that it opened
-    ofstream logfile;
-    logfile.open("log.txt");
-    if (!logfile.is_open()) {
-        cout << "Error: Unable to open the logfile.";
         return 2;
     }
 
-    //Search the input file
+    //Generate a log file and check that it opened
+    logfile.open("log.txt");
+    if (!logfile.is_open()) {
+        cout << "Error: Unable to open the logfile.";
+        return 3;
+    } else {
+        logfile << "Logfile for Gaussian Optimization Analytical Tool\n";
+    }
+
+    //Search the input file for the first keywords
     while (getline(inputfile, line)) {
-		if (line.find(header, 0) != string::npos) {
-			cout << "Found: " << header << endl;
-		}
-	}
-	inputfile.close();
-	cout << "Search Complete";
-	logfile << "Found: " << header << endl;
-	logfile.close();
-	return 0;
+        count_line++;
+	if (line.find(header1, 0) != string::npos) {
+            cout << "Found: " << header1 << " at position " << count_line << endl;
+            logfile << "Found: " << header1 << " at position " << count_line << endl;
+            if (line.find(header2, 0) != string::npos) {
+                cout << "Found: " << header2 << " at position " << count_line << endl;
+		logfile << "Found: " << header2 << "at position " << count_line << endl;
+            } else {
+                cout << "Unable to find " << header2 << endl;
+		logfile << "Unable to find " << header2 << endl;
+		return 4;
+            }
+            }
+    }
+    inputfile.close();
+    cout << "Search Complete";
+    logfile << "Search Complete" << endl;
+    logfile.close();
+    return 0;
 }
 	//Open the file bond_angle.cpp and check that it opened
 //	ofstream bond_angle;
@@ -77,19 +92,4 @@ int main(int argc, char* argv[]) {
 //	return 0;
 //}
 
-
-	//const string gaussian_output::HEADER_STRING = "OPTIMIZED PARAMETERS";
-	//const string gaussian_output::FOOTER_STRING = "GradGradGradGradGradGradGradGradGradGradGrad";
-
-	//Read through the file and for now output the coordinates
-	//while (getline(input_file, gaussian_coordinates, FOOTER_STRING))
-	//{
-		//if (gaussian_coordinates.find(HEADER_STRING) != string::npos)
-		//{
-			//cout << gaussian_coordinates << "\n";
-		//}
-	//}
-
-	//return 0;
-//}
 
