@@ -43,7 +43,15 @@ int main(int argc, char* argv[]) {
         cout << "Error: Unable to open the input file.";
         return 1;
     }
-	
+
+    //Generate a log file and check that it opened
+    ofstream logfile;
+    logfile.open("log.txt");
+    if (!logfile.is_open()) {
+        cout << "Error: Unable to open the logfile.";
+        return 2;
+    }
+
     //Search the input file
     while (getline(inputfile, line)) {
 		if (line.find(header, 0) != string::npos) {
@@ -52,6 +60,8 @@ int main(int argc, char* argv[]) {
 	}
 	inputfile.close();
 	cout << "Search Complete";
+	logfile << "Found: " << header << endl;
+	logfile.close();
 	return 0;
 }
 	//Open the file bond_angle.cpp and check that it opened
