@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "main.h"
-//#include "bond_angle.cpp"
+#include "bond_angle.cpp"
 
 using namespace std;
 /**
@@ -28,8 +28,8 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     ifstream inputfile;
-    ifstream bond_angle;
     ofstream logfile;
+    ifstream bond_angle;
     unsigned int count_line = 0;
     string line;
     string header1 = "Optimized Parameters";
@@ -67,7 +67,8 @@ int main(int argc, char* argv[]) {
             if (line.find(header2, 0) != string::npos) {
                 cout << "Found: " << header2 << " at position " << count_line << endl;
 	        logfile << "Found: " << header2 << "at position " << count_line << endl;
-            } else {
+            } 
+	    else {
                 cout << "Unable to find " << header2 << endl;
 	        logfile << "Unable to find " << header2 << endl;
 	        return 4;
@@ -79,7 +80,7 @@ int main(int argc, char* argv[]) {
     logfile << "Search Complete" << endl;
     logfile.close();
     return 0;
-}
+
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {
