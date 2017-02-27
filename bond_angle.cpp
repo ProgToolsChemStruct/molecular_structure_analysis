@@ -3,11 +3,6 @@
 
 using namespace std;
 
-int main() {
-    
-    return 0;
-}
-
 double ex_ji(double x_j, double x_i, double R_ji) {     
     double ex_ji_v = ((-(x_j-x_i))/R_ji);  //v for variable
     return ex_ji_v;
