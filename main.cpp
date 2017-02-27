@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "main.h"
-#include "bond_angle.cpp"
+//#include "bond_angle.cpp"
 
 using namespace std;
 /**
@@ -26,20 +26,26 @@ using namespace std;
  * information of the biomolecule.
  */
 
-int main() {
-	ifstream inputfile;
-	string line;
-	string header = "                           !   Optimized Parameters   !";
+int main(int argc, char* argv[]) {
+    ifstream inputfile;
+    string line;
+    string header = "                           !   Optimized Parameters   !";
 
-	//Open the input file and check that it opened
-	inputfile.open("gaussian_opt_file");
-	if (!inputfile.is_open() ) {
-		cout << "Error: Unable to open the input file.";
-		return 1;
-	}
+    //Check that input file was directed into the command line
+    if (argc < 2) {
+        cout << "Error: Inputfile not specified in command line\n";
+        return 0;
+    }
+
+    //Open the input file and check that it opened
+    inputfile.open(argv[1]);
+    if (!inputfile.is_open()) {
+        cout << "Error: Unable to open the input file.";
+        return 1;
+    }
 	
-	//Search the input file
-	while (getline(inputfile, line)) {
+    //Search the input file
+    while (getline(inputfile, line)) {
 		if (line.find(header, 0) != string::npos) {
 			cout << "Found: " << header << endl;
 		}
@@ -47,19 +53,19 @@ int main() {
 	inputfile.close();
 	cout << "Search Complete";
 	return 0;
-	
-	//Open the file bond_angle.cpp and check that it opened
-	ofstream bond_angle;
-	bond_angle.open("bond_angle.cpp");
-	if (!bond_angle.is_open()) {
-		cout << "Error: Unable to open bond_angle file.";
-		return 1;
-	}
-	//Close the file bond_angle.cpp
-	bond_angle.close("bond_angle.cpp");
-	cout << "Bond angle calculation complete.";
-	return 0;
 }
+	//Open the file bond_angle.cpp and check that it opened
+//	ofstream bond_angle;
+//	bond_angle.open("bond_angle.cpp");
+//	if (!bond_angle.is_open()) {
+//		cout << "Error: Unable to open bond_angle file.";
+//		return 1;
+//	}
+	//Close the file bond_angle.cpp
+//	bond_angle.close("bond_angle.cpp");
+//	cout << "Bond angle calculation complete.";
+//	return 0;
+//}
 
 
 	//const string gaussian_output::HEADER_STRING = "OPTIMIZED PARAMETERS";
