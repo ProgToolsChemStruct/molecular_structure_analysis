@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     //Close the file bond_angle.cpp
-    bond_angle.close("bond_angle.cpp");
+    bond_angle.close();
     cout << "Bond angle calculation complete.";
     return 0;
 }
