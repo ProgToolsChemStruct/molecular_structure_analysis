@@ -28,6 +28,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     ifstream inputfile;
+    ifstream bond_angle;
     ofstream logfile;
     unsigned int count_line = 0;
     string line;
@@ -60,16 +61,16 @@ int main(int argc, char* argv[]) {
     //Search the input file for the first keywords
     while (getline(inputfile, line)) {
         count_line++;
-	if (line.find(header1, 0) != string::npos) {
+        if (line.find(header1, 0) != string::npos) {
             cout << "Found: " << header1 << " at position " << count_line << endl;
             logfile << "Found: " << header1 << " at position " << count_line << endl;
             if (line.find(header2, 0) != string::npos) {
                 cout << "Found: " << header2 << " at position " << count_line << endl;
-		logfile << "Found: " << header2 << "at position " << count_line << endl;
+	        logfile << "Found: " << header2 << "at position " << count_line << endl;
             } else {
                 cout << "Unable to find " << header2 << endl;
-		logfile << "Unable to find " << header2 << endl;
-		return 4;
+	        logfile << "Unable to find " << header2 << endl;
+	        return 4;
             }
             }
     }
@@ -79,17 +80,14 @@ int main(int argc, char* argv[]) {
     logfile.close();
     return 0;
 }
-	//Open the file bond_angle.cpp and check that it opened
-//	ofstream bond_angle;
-//	bond_angle.open("bond_angle.cpp");
-//	if (!bond_angle.is_open()) {
-//		cout << "Error: Unable to open bond_angle file.";
-//		return 1;
-//	}
-	//Close the file bond_angle.cpp
-//	bond_angle.close("bond_angle.cpp");
-//	cout << "Bond angle calculation complete.";
-//	return 0;
-//}
-
-
+    //Open the file bond_angle.cpp and check that it opened
+    bond_angle.open("bond_angle.cpp");
+    if (!bond_angle.is_open()) {
+        cout << "Error: Unable to open bond_angle file.";
+        return 1;
+    }
+    //Close the file bond_angle.cpp
+    bond_angle.close("bond_angle.cpp");
+    cout << "Bond angle calculation complete.";
+    return 0;
+}
