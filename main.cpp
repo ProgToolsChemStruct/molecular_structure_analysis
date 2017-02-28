@@ -72,10 +72,9 @@ int main(int argc, char* argv[]) {
         } 
     }
     inputfile.close();
-    cout << "Search Complete";
+    cout << "Search Complete\n";
     logfile << "Search Complete" << endl;
     logfile.close();
-    return 0;
 
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
