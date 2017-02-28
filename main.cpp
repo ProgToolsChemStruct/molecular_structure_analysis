@@ -61,20 +61,16 @@ int main(int argc, char* argv[]) {
 
     //Search the input file for the first keywords
     while (getline(inputfile, line)) {
+        total_lines++;
         count_line++;
         if (line.find(header1, 0) != string::npos) {
             cout << "Found: " << header1 << " at position " << count_line << endl;
             logfile << "Found: " << header1 << " at position " << count_line << endl;
-            if (line.find(header2, 0) != string::npos) {
-                cout << "Found: " << header2 << " at position " << count_line << endl;
-	        logfile << "Found: " << header2 << "at position " << count_line << endl;
-            } 
-	    else {
-                cout << "Unable to find " << header2 << endl;
-	        logfile << "Unable to find " << header2 << endl;
-	        return 4;
+            for (int i = 1912; i; --i) {
+                logfile << line << "\n";
+                getline (inputfile, line);
             }
-            }
+        } 
     }
     inputfile.close();
     cout << "Search Complete";
