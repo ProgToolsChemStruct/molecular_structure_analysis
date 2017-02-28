@@ -61,7 +61,6 @@ int main(int argc, char* argv[]) {
 
     //Search the input file for the first keywords
     while (getline(inputfile, line)) {
-        total_lines++;
         count_line++;
         if (line.find(header1, 0) != string::npos) {
             cout << "Found: " << header1 << " at position " << count_line << endl;
