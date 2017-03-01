@@ -31,10 +31,11 @@ int main(int argc, char* argv[]) {
     ifstream inputfile;
     ofstream logfile;
     ifstream bond_angle;
-    unsigned int count_line = 0;
     string line;
-    string header1 = "Optimized Parameters";
-    string header2 = "Standard orientation:";
+    unsigned int count_line = 0;
+    unsigned int total_lines = 0; 
+    string header1 = "Redundant internal coordinates found in file";
+    string footer1 = "Recover connectivity data from disk.";
     string print(string);
 
     //Check that input file was directed into the command line
@@ -64,12 +65,17 @@ int main(int argc, char* argv[]) {
         count_line++;
         if (line.find(header1, 0) != string::npos) {
             cout << "Found: " << header1 << " at position " << count_line << endl;
-            logfile << "Found: " << header1 << " at position " << count_line << endl;
-            for (int i = 1912; i; --i) {
-                logfile << line << "\n";
-                getline (inputfile, line);
+            logfile << "Found: " << header1 << " at position " << count_line << endl;	
+	    for (int i = 1; i > 0; ++i) {
+               logfile << line << "\n";
+               getline (inputfile, line);
+	       if (line.find(footer1, 0) != string::npos) {
+		       cout << "Found: " << footer1 << endl;
+		       logfile << "Found: " << footer1 << endl;
+		       break;
+	       }		
             }
-        } 
+        }
     }
     inputfile.close();
     cout << "Search Complete\n";
