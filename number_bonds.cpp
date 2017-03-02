@@ -4,7 +4,8 @@
 
 /**denotes elements hrgrogen to argon starting with hydrogen=1
  /*takes enum and string file to do if and else work about number of bonds*/
- 
+  
+    enum=c++11
     enum elements_hydrogen_to_argon t //element assignments std=c++11
     {
       HYDROGEN = 1,
@@ -27,6 +28,7 @@
       ARGON 
     };
     
+    string=c++11
     string elements_to_string (elements_hydrogen_to_argon d) //numbers to element assignments
     {
     if (element == Hydrogen    ) return "Hydrogen";
