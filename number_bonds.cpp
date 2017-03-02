@@ -28,6 +28,10 @@
       ARGON 
     };
     
+    elements_hyrgogen_to_argon element;
+    element = Hydrogen;
+    cout << Hydrogen;
+    
     string=c++11
     string elements_to_string (elements_hydrogen_to_argon d) //numbers to element assignments
     {
