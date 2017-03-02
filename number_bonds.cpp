@@ -1,6 +1,6 @@
 #include <iostream>
 #ifndef ELEMENTS_HYDROGEN_TO_OXYGEN_H
-#define ELEMENTS_TO_HYDROHEN_TO_OXYGEN_H
+#define ELEMENTS_HYDROHEN_TO_OXYGEN_H
 
 /**denotes elements hrgrogen to argon starting with hydrogen=1
  /*takes enum and string file to do if and else work about number of bonds*/
