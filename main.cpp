@@ -4,6 +4,7 @@
 
 #include "main.h"
 #include "bond_angle.cpp"
+#include "elements.cpp"
 // #include "bond_length.cpp"
 
 using namespace std;
