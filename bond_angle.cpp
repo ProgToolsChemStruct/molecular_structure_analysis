@@ -11,7 +11,7 @@ double ey_ji(double y_j, double y_i, double R_ji) {
 }
 double ez_ji(double z_j, double z_i, double R_ji) {
     return ((-(z_j-z_i))/R_ji);
-    
+}    
 double ex_jk(double x_j, double x_k, double R_jk) {     
     return ((-(x_j-x_k))/R_jk);
 }
