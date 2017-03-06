@@ -30,3 +30,11 @@ double ey_kl(double y_k, double y_l, double R_kl) {
 double ez_kl(double z_k, double z_l, double R_kl) {
     return ((-(z_k-z_l))/R_kl);
 }
+
+double phi_ijk(double ex_ji, double ey_ji, double ez_ji, double ex_jk, double ey_jk, double ez_jk) {
+    return acos((ex_ji)*(ex_jk)+(ey_ji)*(ey_jk)+(ez_ji)*(ez_jk));
+}
+
+double phi_jkl(double ex_kj, double ey_kj, double ez_kj, double ex_kl, double ey_kl, double ez_kl) {
+    return acos((ex_kj)*(ex_kl)+(ey_kj)*(ey_kl)+(ez_kj)*(ez_kl));
+}
