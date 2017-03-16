@@ -2,11 +2,13 @@ CC = g++
 
 CFLAGS = -Wall
 
-all: main
+all: main extraction
 
-main: main.o
-	${CC} ${CFLAGS} main.o -o main
+main: main.o extraction.o
+	${CC} ${CFLAGS} main.o extraction.o -o main
 
+extraction: extraction.o
+	${CC} ${CFLAGS} extraction.o
 clean:
 	\rm -rf *.o
 
