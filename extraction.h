@@ -12,7 +12,7 @@ class Extraction
     string header1;
     string footer1;
 
-    void isolate_input();
+    void trim_coords(int q);
 
     Extraction (const char *inputfile);
     ~Extraction ();

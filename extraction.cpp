@@ -44,3 +44,33 @@ Extraction::Extraction(const char *inputfile)
     orig_file.close();
     coordfile.close();
 }
+
+//Clear the top two unneccessary lines from coords file
+void Extraction::trim_coords(int q)
+{
+    ifstream coordsfile;
+    coordsfile.open("coordinates.txt");
+    ofstream log;
+    ofstream cleancoords;
+    log.open("log.txt", ios::app);
+    cleancoords.open("coordinates.csv");
+    log << "Beginning attempt to clean coords file";
+    int i = 0;
+    while (getline(coordsfile, line)) {
+        if (i < q) {
+            i++;
+        } else {
+                cleancoords << line << "\n";
+                log << line << "\n";
+        }
+    }
+    cout << "File successfully cleaned" << endl;
+    log << "File successfully cleaned" << endl;
+    coordsfile.close();
+    log.close();
+    cleancoords.close();
+    remove("coordinates.txt");
+}
+    
+        
+    

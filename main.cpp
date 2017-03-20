@@ -54,6 +54,9 @@ int main(int argc, char* argv[])
     //Extract the raw coordinates from the inputfile in the commandline
     Extraction molecule(argv[1]);
 
+    //Clean the coords file
+    molecule.trim_coords(2);
+
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {
