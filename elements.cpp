@@ -67,7 +67,8 @@ enum elements_hydrogen_to_argon {
     
     
     //numbers to element assignments
-
+    //access coordinates.scv file
+      
 int main()
 {
     /**if Hydrogen is less than Sodium return 1;
