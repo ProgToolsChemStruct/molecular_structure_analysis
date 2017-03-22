@@ -14,3 +14,6 @@ clean:
 
 cleanall:
 	\rm -rf main *.o *.txt *.csv
+
+cleanfiles:
+	\rm -rf *.txt *.csv
