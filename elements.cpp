@@ -62,17 +62,14 @@ enum elements_hydrogen_to_argon {
      if (element == PHOSPHOROUS) return "Phosphorous";
      if (element == SULFUR     ) return "Sulfur";
      if (element == CHLORINE   ) return "Chlorine";
-     if (element == ARGON      ) return "Argon";
-
-
-    
-    
+     if (element == ARGON      ) return "Argon";  
+   
     }; 
 
     //access coordinates.scv file
       
-int main()
-{
+int main() {
+ 
     /**if Hydrogen is less than Sodium return 1;
       *else return not 1;
       *if Beryllium is less than Magnesium return 2;
@@ -88,5 +85,5 @@ int main()
       *if Helium is less than Argon return 0;
       *else return "There are Bonds!" **/
      
-}    
+};    
 
