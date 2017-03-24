@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "elements.h"
 
 using namespace std; 
@@ -37,11 +38,12 @@ enum elements_hydrogen_to_argon {
     PHOSPHOROUS,
     SULFUR,
     CHLORINE,
-    ARGON 
+    ARGON,
+
     };
     
     elements_hydrogen_to_argon element;
- 
+
     string elements_to_string (elements_hydrogen_to_argon d) {
      if (element == HYDROGEN   ) return "Hydrogen";
      if (element == HELIUM     ) return "Helium";
@@ -61,12 +63,12 @@ enum elements_hydrogen_to_argon {
      if (element == SULFUR     ) return "Sulfur";
      if (element == CHLORINE   ) return "Chlorine";
      if (element == ARGON      ) return "Argon";
+
+
     
     
-    }; 	
-    
-    
-    //numbers to element assignments
+    }; 
+
     //access coordinates.scv file
       
 int main()
@@ -87,4 +89,4 @@ int main()
       *else return "There are Bonds!" **/
      
 }    
-             
+
