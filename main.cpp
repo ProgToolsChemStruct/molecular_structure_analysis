@@ -5,8 +5,11 @@
 #include "main.h"
 #include "extraction.h"
 #include "bond_angle.cpp"
-#include "elements.cpp"
+
+#include "bond_length.h"
+#include "elements.h"
 //#include "bond_length.cpp"
+
 
 using namespace std;
 /**
