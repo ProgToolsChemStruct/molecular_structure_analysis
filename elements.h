@@ -4,7 +4,7 @@
 /**denotes elements hydrogen to argon starting with hydrogen=1
  /*takes enum and string file to do if and else work about number of bonds*/
   
-    using namespace std; 
+using namespace std; 
     
 enum elements_hydrogen_to_argon {
     HYDROGEN = 1,
