@@ -1,3 +1,10 @@
+# Not list executable as untracked file
+main
+
+# Ignore latex and html files
+html
+latex
+
 # Compiled Object files
 *.slo
 *.lo
