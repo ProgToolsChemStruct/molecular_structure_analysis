@@ -5,19 +5,15 @@
 
 using namespace std; 
 /**
-  * @elementspage The Gaussian Optimization Analytical Tool (GOAT)
-  *
-  * Welcome to the Gaussian Optimization Analytical Tool (GOAT) documentation site! 
-  * Users may find relevant info related to this program, a program designed to provide
-  * structural analyses of biomolecules successfully optimized using Gaussian software.
-  *
-  * @short elements program
   * @file elements.cpp
   * @author Hananh Lozano
   * @param none
-  * @return 
+  * @return 0 if success
   *
-  * The purpose of this program is to identify the first eighteen elements, hydrogen to argon, and assign them a number starting with 1. Then it will take the enum and string files and build upon those to determine how many bonds between atoms there will be.**/   
+  * The purpose of this program is to identify the first eighteen elements,     
+  * hydrogen to argon, and assign them a number starting with 1. Then it will   
+  * take the enum and string files and build upon those to determine how many      * bonds between atoms there will be.
+  **/   
       
 enum elements_hydrogen_to_argon {
     HYDROGEN = 1,
