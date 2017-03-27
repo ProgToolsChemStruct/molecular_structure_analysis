@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
 
-/**denotes elements hydrogen to argon starting with hydrogen=1
- /*takes enum and string file to do if and else work about number of bonds*/
-  
+// header from elements.cpp
+
 using namespace std; 
     
 enum elements_hydrogen_to_argon {
@@ -52,24 +51,20 @@ enum elements_hydrogen_to_argon {
     }; 	
     
     
-    //numbers to element assignments
+    //elements and number of bonds
 
 int main()
 {
-    /**if Hydrogen is less than Sodium return 1;
-      *else return not 1;
-      *if Beryllium is less than Magnesium return 2;
-      *else return not 2;
-      *if Boron is less than ALuminum return 3;
-      *else return not 3;
-      *if Carbon is less than Silicon return 4;
-      *else return less than 4;
-      *if Nitrogen is less than Phosphorous return 3;
-      *else return not 3;
-      *if Fluorine is less than Chlorine return 1;
-      *else return not 1;
-      *if Helium is less than Argon return 0;
-      *else return "There are Bonds!" **/
+    /**if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
+    if Beryllium or Magnesium return "2 bonds Be,Mg";
+    if Boron or Aluminum return "3 bonds B,Al";
+    if Carbon or Silicon return "4 bonds C,Si";
+    if Nitrogen or Phosphorous return "3 bonds N,P";
+    if Oxygen or Sulfur return "2 bonds O,S";
+    if Fluorine or Chlorine return "1 bond F, Cl";
+    if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
+    }
+    return null**/
      
 };    
              
