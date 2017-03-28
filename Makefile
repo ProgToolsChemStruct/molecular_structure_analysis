@@ -19,3 +19,6 @@ cleanall:
 
 elements: elements.o 
     $(CC) $(CFLAGS) elements.o
+
+bond_length: bond_length.o
+    $(CC) $(CFLAGS) bond_length.o  
