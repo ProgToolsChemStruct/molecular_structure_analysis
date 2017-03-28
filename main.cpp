@@ -8,6 +8,8 @@
 #include "elements.cpp"
 #include "bond_length.cpp"
 #include "bond_angle.h"
+#include "dihedral_angle.cpp"
+#include "dihedral_angle.h"
 
 using namespace std;
 /**
@@ -61,11 +63,22 @@ int main(int argc, char* argv[])
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {
-        cout << "Error: Unable to open bond_angle file.";
+        cout << "Error: Unable to open file bond_angle.";
         return 1;
     }
     //Close the file bond_angle.cpp
     bond_angle.close();
     cout << "Bond angle calculation complete.";
+    return 0;
+    
+    //Open the file dihedral_angle.cpp and check that it opened
+    dihedral_angle.open("dihedral_angle.cpp");
+    if (!dihedral_angle.is_open()) {
+        cout << "Error: Unable to open file dihedral_angle.";
+        return 1;
+    }
+    //Close the file dihedral_angle.cpp
+    dihedral_angle.close();
+    cout << "Dihedral angle calculation complete.";
     return 0;
 }
