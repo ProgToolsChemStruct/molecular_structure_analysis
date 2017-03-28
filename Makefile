@@ -4,7 +4,6 @@ CFLAGS = -Wall
 
 all: main
 
-<<<<<<< HEAD
 main: main.o extraction.o elements.o
     ${CC} ${CFLAGS} main.o extraction.o -o main elements.o 
 
