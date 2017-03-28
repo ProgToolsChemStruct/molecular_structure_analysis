@@ -4,7 +4,6 @@
 
 #include "main.h"
 #include "extraction.h"
-#include "elements.cpp"
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 
