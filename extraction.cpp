@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -56,12 +58,14 @@ void Extraction::trim_coords(int q)
     cleancoords.open("coordinates.csv");
     log << "Beginning attempt to clean coords file";
     int i = 0;
+    count_line = 0;
     while (getline(coordsfile, line)) {
         if (i < q) {
             i++;
         } else {
                 cleancoords << line << "\n";
                 log << line << "\n";
+                count_line++;
         }
     }
     cout << "File successfully cleaned" << endl;
@@ -72,5 +76,39 @@ void Extraction::trim_coords(int q)
     remove("coordinates.txt");
 }
     
-        
-    
+//Generate a 2D array from the coords file
+void Extraction::array_coords()
+{
+            
+    ifstream cleancoords("coordinates.csv");
+    ofstream outputcoords("coordinates.txt");
+    ofstream log;
+    log.open("log.txt", ios::app);
+    log << "Beginning generation of 2D array" << endl;
+    outputcoords << count_line << endl;
+    while (getline(cleancoords,line)) {
+        sub_array.clear();
+        stringstream newstring(line);
+        while (getline(newstring, sub_line, ',')) {
+            sub_array.push_back(sub_line);
+        }
+        array.push_back(sub_array);
+    }
+
+    int i, j;
+    for (i = 0; i < array.size(); ++i) {
+        for (j = 0; j < array[i].size(); ++j) {
+            cout << array[i][j] << "	";
+            log << array[i][j] << "	";
+            outputcoords << array[i][j] << "	";
+        }
+        cout << endl;
+        log << endl;
+        outputcoords << endl;
+    }
+    log.close();
+    outputcoords.close();
+    cleancoords.close();
+    remove("coordinates.csv");
+}
+

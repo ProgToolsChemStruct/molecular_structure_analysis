@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <vector>
 #include "main.h"
 #include "extraction.h"
 #include "bond_angle.cpp"
@@ -57,6 +57,9 @@ int main(int argc, char* argv[])
     //Clean the coords file
     molecule.trim_coords(2);
 
+    //Generate the 2D array of the coordinates
+    molecule.array_coords();
+
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {
@@ -65,6 +68,6 @@ int main(int argc, char* argv[])
     }
     //Close the file bond_angle.cpp
     bond_angle.close();
-    cout << "Bond angle calculation complete.";
+    cout << "Bond angle calculation complete." << endl;
     return 0;
 }
