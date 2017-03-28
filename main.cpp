@@ -4,11 +4,8 @@
 
 #include "main.h"
 #include "extraction.h"
-#include "bond_angle.cpp"
 #include "elements.cpp"
-#include "bond_length.cpp"
 #include "bond_angle.h"
-#include "dihedral_angle.cpp"
 #include "dihedral_angle.h"
 
 using namespace std;
