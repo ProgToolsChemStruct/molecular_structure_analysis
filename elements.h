@@ -1,7 +1,16 @@
 #include <iostream>
 #include <string>
 
-// header from elements.cpp
+/**
+  * @file elements.cpp
+  * @author Hananh Lozano
+  * @param none
+  * @return 0 if success
+  *
+  * The purpose of this program is to identify the first eighteen elements,     
+  * hydrogen to argon, and assign them a number starting with 1. Then it will   
+  * take the enum and string files and build upon those to determine how many      * bonds between atoms there will be.
+  **/ 
 
 using namespace std; 
     
@@ -53,8 +62,7 @@ enum elements_hydrogen_to_argon {
     
     //elements and number of bonds
 
-int main()
-{
+int main(){
     /**if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
     if Beryllium or Magnesium return "2 bonds Be,Mg";
     if Boron or Aluminum return "3 bonds B,Al";
@@ -64,7 +72,7 @@ int main()
     if Fluorine or Chlorine return "1 bond F, Cl";
     if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
     }
-    return null**/
-     
-};    
+    
+    return null**/    
+}    
              
