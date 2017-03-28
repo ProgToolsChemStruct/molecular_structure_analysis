@@ -68,13 +68,13 @@ int main(int argc, char* argv[])
     return 0;
     
     //Open the file dihedral_angle.cpp and check that it opened
-    dihedral_angle.open("dihedral_angle.cpp");
-    if (!dihedral_angle.is_open()) {
-        cout << "Error: Unable to open file dihedral_angle.";
-        return 1;
-    }
+    //dihedral_angle.open("dihedral_angle.cpp");
+    //if (!dihedral_angle.is_open()) {
+        //cout << "Error: Unable to open file dihedral_angle.";
+        //return 1;
+    //}
     //Close the file dihedral_angle.cpp
-    dihedral_angle.close();
-    cout << "Dihedral angle calculation complete.";
-    return 0;
+    //dihedral_angle.close();
+    //cout << "Dihedral angle calculation complete.";
+    //return 0;
 }
