@@ -15,7 +15,6 @@ class Extraction
     string header1;
     string footer1;
     vector<string> sub_array;
-    vector< vector<string> > array;
     
     void trim_coords(int q);
     void array_coords();
@@ -23,3 +22,7 @@ class Extraction
     Extraction (const char *inputfile);
     ~Extraction ();
 };
+
+
+extern vector< vector<string> > array;
+    

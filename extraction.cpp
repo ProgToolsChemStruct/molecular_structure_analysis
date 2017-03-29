@@ -75,8 +75,10 @@ void Extraction::trim_coords(int q)
     cleancoords.close();
     remove("coordinates.txt");
 }
+
     
 //Generate a 2D array from the coords file
+vector< vector<string> > array;
 void Extraction::array_coords()
 {
             

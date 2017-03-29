@@ -59,6 +59,8 @@ int main(int argc, char* argv[])
 
     //Generate the 2D array of the coordinates
     molecule.array_coords();
+    cout << array[0][0] << endl;
+    cout << array[0][1] << endl;
 
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
