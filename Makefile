@@ -9,6 +9,7 @@ main: main.o extraction.o
 
 extraction: extraction.o
 	${CC} ${CFLAGS} extraction.o
+
 clean:
 	\rm -rf *.o
 

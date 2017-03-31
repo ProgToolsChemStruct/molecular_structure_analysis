@@ -6,11 +6,10 @@
 
 using namespace std;
 
-class gaussian_output 
-{
+class gaussian_output {
 private:
-  static const string HEADER_STRING;
-  static const string FOOTER_STRING;
+    static const string HEADER_STRING;
+    static const string FOOTER_STRING;
 };
 
 
