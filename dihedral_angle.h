@@ -21,6 +21,6 @@ double e_jk(double ex_jk, double ey_jk, double ez_jk);
 
 double e_kl(double ex_kl, double ey_kl, double ez_kl); 
 
-double tau_ijkl(double ex_ji, double ey_ji, double ez_ji, double ex_jk, double ey_jk, double ez_jk, double ex_kl, double ey_kl, double ez_kl, double phi_ijk, double phi_jkl) {
+double tau_ijkl(double ex_ji, double ey_ji, double ez_ji, double ex_jk, double ey_jk, double ez_jk, double ex_kl, double ey_kl, double ez_kl, double phi_ijk, double phi_jkl);
 
 #endif
