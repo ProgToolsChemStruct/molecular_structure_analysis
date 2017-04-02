@@ -33,6 +33,7 @@ int main(int argc, char* argv[])
 {
     ofstream logfile;
     fstream bond_angle;
+    fstream dihedral_angle;
 
     //Check that inputfile was directed into the command line
     if (argc < 2)
@@ -48,7 +49,7 @@ int main(int argc, char* argv[])
         cout << "Error: Unable to open the logfile.";
         return 3;
     } else {
-        logfile << "Logfile for Gaussian Optimization Analytical Tool\n";
+        logfile << "Logfile for Gaussian Optimization Analytical Tool" << endl;
     }
 
     //Extract the raw coordinates from the inputfile in the commandline
@@ -59,8 +60,6 @@ int main(int argc, char* argv[])
 
     //Generate the 2D array of the coordinates
     molecule.array_coords();
-    cout << array[0][0] << endl;
-    cout << array[0][1] << endl;
 
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
