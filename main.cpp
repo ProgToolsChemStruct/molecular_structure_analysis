@@ -8,6 +8,7 @@
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 
+
 using namespace std;
 /**
  * @mainpage The Gaussian Optimization Analytical Tool (GOAT)
@@ -61,6 +62,22 @@ int main(int argc, char* argv[])
     //Generate the 2D array of the coordinates
     molecule.array_coords();
 
+    //Calculate the model's total mass
+    double model_mass;
+    double calculate_total_mass();
+    cout << "Beginning calculation of the total mass of the model." << endl;
+    model_mass = calculate_total_mass();
+    if (model_mass == 0) {
+        cout << "Error: Mass calculated to be zero." << endl;
+        logfile << "Error: Mass calculated to be zero." << endl;
+        logfile.close();
+        return 4;
+    } else {
+        cout << scientific << "Total mass of model: " << model_mass << " amu" << endl;  
+    }
+
+    //Calculate the model's center of mass
+    
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {

@@ -10,7 +10,7 @@ class Extraction
     public:
 
     unsigned int count_line;
-    
+
     void trim_coords(int q);
     void array_coords();
 
@@ -26,6 +26,6 @@ class Extraction
     vector<string> sub_array;
 };
 
-
-extern vector< vector<string> > array;
+extern unsigned int totalatoms;
+extern std::vector< vector<string> > array;
     
