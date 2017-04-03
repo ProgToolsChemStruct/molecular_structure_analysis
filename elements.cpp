@@ -4,16 +4,8 @@
 #include "elements.h"
 
 using namespace std; 
-/**
-  * @file elements.cpp
-  * @author Hananh Lozano
-  * @param none
-  * @return 0 if success
-  *
-  * The purpose of this program is to identify the first eighteen elements,     
-  * hydrogen to argon, and assign them a number starting with 1. Then it will   
-  * take the enum and string files and build upon those to determine how many      * bonds between atoms there will be.
-  **/   
+
+//reference header from elements.h  
       
 enum elements_hydrogen_to_argon {
     HYDROGEN = 1,
