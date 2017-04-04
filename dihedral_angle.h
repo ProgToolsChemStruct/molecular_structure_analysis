@@ -27,4 +27,4 @@ double tau_ijkl(
   double ex_kl, double ey_kl, double ez_kl, 
   double phi_ijk, double phi_jkl);
 
-#endif //DIHEDRAL_ANGLE_H
+#endif
