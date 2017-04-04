@@ -125,9 +125,9 @@ void Extraction::array_coords()
     cout << "\nNumber of atoms in the model: " << totalatoms << endl;
     cout << "Cartesian Coordinates extracted from the model:" << endl;
 
-    for (i = 0; i < array.size(); ++i) {
+    for (i = 0; i < array.size(); i++) {
 
-        for (j = 0; j < array[i].size(); ++j) {
+        for (j = 0; j < array[i].size(); j++) {
             cout << array[i][j] << "	";
             log << array[i][j] << "	";
             outputcoords << array[i][j] << "	";
