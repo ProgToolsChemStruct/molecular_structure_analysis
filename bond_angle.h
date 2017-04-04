@@ -39,4 +39,4 @@ double phi_ijk(double ex_ji, double ey_ji, double ez_ji, double ex_jk, double ey
 
 double phi_jkl(double ex_kj, double ey_kj, double ez_kj, double ex_kl, double ey_kl, double ez_kl);
 
-#endif
+#endif //BOND_ANGLE_H
