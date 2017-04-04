@@ -128,9 +128,9 @@ void Extraction::array_coords()
     for (i = 0; i < array.size(); i++) {
 
         for (j = 0; j < array[i].size(); j++) {
-            cout << array[i][j] << "	";
-            log << array[i][j] << "	";
-            outputcoords << array[i][j] << "	";
+            cout << array[i][j] << "     ";
+            log << array[i][j] << "     ";
+            outputcoords << array[i][j] << "     ";
         }
 
         cout << endl;

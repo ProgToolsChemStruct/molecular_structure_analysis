@@ -77,7 +77,20 @@ int main(int argc, char* argv[])
     }
 
     //Calculate the model's center of mass
-    
+    double xcoord, ycoord, zcoord;
+    double calc_prod_coords_mass(int);
+
+    xcoord = calc_prod_coords_mass(2);
+    ycoord = calc_prod_coords_mass(3);
+    zcoord = calc_prod_coords_mass(4);
+
+    xcoord /= model_mass;
+    ycoord /= model_mass;
+    zcoord /= model_mass;
+
+    cout << "Model's Center of Mass coordinates: " << endl
+         << xcoord << "     " << ycoord << "     " << zcoord << endl;
+ 
     //Open the file bond_angle.cpp and check that it opened
     bond_angle.open("bond_angle.cpp");
     if (!bond_angle.is_open()) {

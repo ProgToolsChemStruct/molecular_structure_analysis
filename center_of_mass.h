@@ -12,6 +12,7 @@
 
 #include <vector>
 #include <string>
+#include <stdlib.h>
 
 /**
  * @brief Array storing the masses of the most common isotope of atomic elements
@@ -71,7 +72,7 @@ extern double total_mass;
  * @param symb
  * @return The function returns the integeric atomic number of the symbol input
  */
-int symbol_to_atomic_number(string symb);
+int symbol_to_atomic_number(std::string symb);
 
 /**
  * @brief Function used to calculate the total mass of a model stored in the vector "array"
@@ -88,3 +89,5 @@ int symbol_to_atomic_number(string symb);
  * @see atomic_masses
  */
 double calculate_total_mass();
+
+double calc_prod_coords_mass(int position);
