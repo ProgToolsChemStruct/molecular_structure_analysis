@@ -32,6 +32,7 @@ enum elements_hydrogen_to_argon {
     elements_hydrogen_to_argon element;
 
     string elements_to_string (elements_hydrogen_to_argon d) {
+     
      if (element == HYDROGEN   ) return "Hydrogen";
      if (element == HELIUM     ) return "Helium";
      if (element == LITHIUM    ) return "Lithium";
@@ -56,17 +57,19 @@ enum elements_hydrogen_to_argon {
     //access coordinates.csv file array/struct
     //read .csv array file
       
-int main() {
+    //reads elements and goves number of bonds 
+    
+    string elements_to_bonds {
  
-   if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
-   if Beryllium or Magnesium return "2 bonds Be,Mg";
-   if Boron or Aluminum return "3 bonds B,Al";
-   if Carbon or Silicon return "4 bonds C,Si";
-   if Nitrogen or Phosphorous return "3 bonds N,P";
-   if Oxygen or Sulfur return "2 bonds O,S";
-   if Fluorine or Chlorine return "1 bond F, Cl";
-   if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
+    if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
+    if Beryllium or Magnesium return "2 bonds Be,Mg";
+    if Boron or Aluminum return "3 bonds B,Al";
+    if Carbon or Silicon return "4 bonds C,Si";
+    if Nitrogen or Phosphorous return "3 bonds N,P";
+    if Oxygen or Sulfur return "2 bonds O,S";
+    if Fluorine or Chlorine return "1 bond F, Cl";
+    if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
    }    
 
-return null;
+return "null";
 }
