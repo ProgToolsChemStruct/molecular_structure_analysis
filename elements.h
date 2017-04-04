@@ -62,17 +62,18 @@ enum elements_hydrogen_to_argon {
     
     //elements and number of bonds
 
-int main(){
-    /**if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
-    if Beryllium or Magnesium return "2 bonds Be,Mg";
-    if Boron or Aluminum return "3 bonds B,Al";
-    if Carbon or Silicon return "4 bonds C,Si";
-    if Nitrogen or Phosphorous return "3 bonds N,P";
-    if Oxygen or Sulfur return "2 bonds O,S";
-    if Fluorine or Chlorine return "1 bond F, Cl";
-    if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
-    }
+    string elements_to_bonds{
     
-    return null**/    
+     if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
+     if Beryllium or Magnesium return "2 bonds Be,Mg";
+     if Boron or Aluminum return "3 bonds B,Al";
+     if Carbon or Silicon return "4 bonds C,Si";
+     if Nitrogen or Phosphorous return "3 bonds N,P";
+     if Oxygen or Sulfur return "2 bonds O,S";
+     if Fluorine or Chlorine return "1 bond F, Cl";
+     if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
+     }
+    
+    return "null";    
 }    
              
