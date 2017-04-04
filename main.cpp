@@ -4,9 +4,10 @@
 #include <vector>
 #include "main.h"
 #include "extraction.h"
-#include "elements.cpp"
 #include "bond_angle.h"
 #include "dihedral_angle.h"
+#include "elements.h"
+#include "bond_length.h"
 
 
 using namespace std;
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
     ofstream logfile;
     fstream bond_angle;
     fstream dihedral_angle;
+    fstream bond_length;
 
     //Check that inputfile was directed into the command line
     if (argc < 2)
@@ -58,6 +60,17 @@ int main(int argc, char* argv[])
 
     //Clean the coords file
     molecule.trim_coords(2);
+    
+    //Open the file bond_length.cpp and check that it opened
+    bond_length.open("bond_length.cpp");
+    if (!bond_length.is_open()) {
+         cout << "Erorr: Unable to open bond_length file.";
+	 return 1;
+    }
+    
+    //Close the file bond_length.cpp
+    bond_length.close();
+    cout << "Bond length calculation complete." ;
 
     //Generate the 2D array of the coordinates
     molecule.array_coords();
