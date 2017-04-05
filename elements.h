@@ -1,7 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
 /**
   * @file elements.cpp
   * @author Hananh Lozano
@@ -11,6 +7,9 @@
   * The purpose of this program is to identify the first eighteen elements,     
   * hydrogen to argon, and assign them a number starting with 1.
   **/ 
+
+#ifndef ELEMENTS_H
+#define ELEMENTS_H
 
 using namespace std; 
     
@@ -59,3 +58,4 @@ using namespace std;
      if (element == ARGON      ) return "Argon";
     
     }
+#endif //ELEMENTS_H 
