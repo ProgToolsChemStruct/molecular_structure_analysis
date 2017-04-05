@@ -1,43 +1,44 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 
 /**
   * @file elements.cpp
   * @author Hananh Lozano
   * @param none
-  * @return 0 if success
+  * @return name of element upon success
   *
   * The purpose of this program is to identify the first eighteen elements,     
-  * hydrogen to argon, and assign them a number starting with 1. Then it will   
-  * take the enum and string files and build upon those to determine how many      * bonds between atoms there will be.
+  * hydrogen to argon, and assign them a number starting with 1.
   **/ 
 
 using namespace std; 
     
-enum elements_hydrogen_to_argon {
-    HYDROGEN = 1,
-    HELIUM,
-    LITHIUM,
-    BERLLYIUM,
-    BORON,
-    CARBON,
-    NITROGEN,
-    OXYGEN,
-    FLUORINE,
-    NEON,
-    SODIUM,
-    MAGNESIUM,
-    ALUMINUM,
-    SILICON,
-    PHOSPHOROUS,
-    SULFUR,
-    CHLORINE,
-    ARGON 
-    };
+    enum elements_hydrogen_to_argon {
+     HYDROGEN = 1,
+     HELIUM,
+     LITHIUM,
+     BERLLYIUM,
+     BORON,
+     CARBON,
+     NITROGEN,
+     OXYGEN,
+     FLUORINE,
+     NEON,
+     SODIUM,
+     MAGNESIUM,
+     ALUMINUM,
+     SILICON,
+     PHOSPHOROUS,
+     SULFUR,
+     CHLORINE,
+     ARGON 
+     };
     
     elements_hydrogen_to_argon element;
  
     string elements_to_string (elements_hydrogen_to_argon d) {
+     
      if (element == HYDROGEN   ) return "Hydrogen";
      if (element == HELIUM     ) return "Helium";
      if (element == LITHIUM    ) return "Lithium";
@@ -57,23 +58,7 @@ enum elements_hydrogen_to_argon {
      if (element == CHLORINE   ) return "Chlorine";
      if (element == ARGON      ) return "Argon";
     
-    }; 	
+    }
+	
     
     
-    //elements and number of bonds
-
-    string elements_to_bonds{
-    
-     if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
-     if Beryllium or Magnesium return "2 bonds Be,Mg";
-     if Boron or Aluminum return "3 bonds B,Al";
-     if Carbon or Silicon return "4 bonds C,Si";
-     if Nitrogen or Phosphorous return "3 bonds N,P";
-     if Oxygen or Sulfur return "2 bonds O,S";
-     if Fluorine or Chlorine return "1 bond F, Cl";
-     if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
-     }
-    
-    return "null";    
-}    
-             
