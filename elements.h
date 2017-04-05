@@ -59,6 +59,3 @@ using namespace std;
      if (element == ARGON      ) return "Argon";
     
     }
-	
-    
-    

@@ -5,8 +5,14 @@
 
 using namespace std;
 
+//open log file
+ofstream log;
+    log.open("log.txt", ios::app);
+
 //calculates dihedral angle between planes i-j-k and j-k-l
 double dihedral_angle() {
+    
+    log << "Beginning calculation of unit vectors";
     
     //cross product of unit vectors
     double ex_ijk = ((ey_ji * ez_jk) - (ez_ji * ey_jk));
@@ -20,6 +26,8 @@ double dihedral_angle() {
     double ey_jkl = ((ez_kj * ex_kl) - (ex_kj * ez_kl));
     
     double ez_jkl = ((ex_kj * ey_kl) - (ey_kj * ex_kl));
+    
+    log << "Beginning calculation of dihedral angle";
     
     //dot product and calculation of dihedral angle (tau)
     double exx = (ex_ijk * ex_jkl);
@@ -37,10 +45,14 @@ double dihedral_angle() {
     
     return tau_ijkl;
     
+    log << "Completed calculation of dihedral angle";
+    
 }
 
 //determines sign of dihedral angle
 double sign_tau() {
+    
+    log << "Beginning compution of sign of dihedral angle";
     
     double cross_yz = (ey_ijk * ez_jkl) - (ez_ijk * ey_jkl);
     
@@ -64,4 +76,7 @@ double sign_tau() {
     
     return tau_ijkl * sign;
     
+    log << "Completed calculation of dihedral angle including sign of angle";
+    
+    log.close();
 }

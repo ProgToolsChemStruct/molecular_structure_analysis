@@ -8,7 +8,7 @@ using namespace std;
 
 //open coordinates.csv array
 
-int main() 
+int function_name() 
 {
 using R_ji (x_j, x_i, y_j, y_i, z_j, z_i)
 {

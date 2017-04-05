@@ -56,6 +56,8 @@ Extraction::Extraction(const char *inputfile)
 
 
 //Clear the top two unneccessary lines from coords file
+unsigned int totalatoms;
+
 void Extraction::trim_coords(int q)
 {
     ifstream coordsfile;
@@ -85,6 +87,8 @@ void Extraction::trim_coords(int q)
     cout << "File successfully cleaned" << endl;
     log << "File successfully cleaned" << endl;
 
+    totalatoms = count_line;
+
     coordsfile.close();
     log.close();
     cleancoords.close();
@@ -103,7 +107,7 @@ void Extraction::array_coords()
     log.open("log.txt", ios::app);
 
     log << "Beginning generation of 2D array" << endl;
-    outputcoords << count_line << endl;
+    outputcoords << totalatoms << endl;
 
     while (getline(cleancoords,line)) {
         sub_array.clear();
@@ -118,15 +122,15 @@ void Extraction::array_coords()
 
     int i, j;
 
-    cout << "\nNumber of atoms in the model: " << count_line << endl;
+    cout << "\nNumber of atoms in the model: " << totalatoms << endl;
     cout << "Cartesian Coordinates extracted from the model:" << endl;
 
-    for (i = 0; i < array.size(); ++i) {
+    for (i = 0; i < array.size(); i++) {
 
-        for (j = 0; j < array[i].size(); ++j) {
-            cout << array[i][j] << "	";
-            log << array[i][j] << "	";
-            outputcoords << array[i][j] << "	";
+        for (j = 0; j < array[i].size(); j++) {
+            cout << array[i][j] << "     ";
+            log << array[i][j] << "     ";
+            outputcoords << array[i][j] << "     ";
         }
 
         cout << endl;
@@ -134,7 +138,6 @@ void Extraction::array_coords()
         outputcoords << endl;
     }
 
-    log.close();
     outputcoords.close();
     cleancoords.close();
     remove("coordinates.csv");
