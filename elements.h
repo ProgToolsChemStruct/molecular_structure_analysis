@@ -62,7 +62,7 @@ enum elements_hydrogen_to_argon {
     
     //elements and number of bonds
 
-int main(){
+//string elements_to_bonds{
     /**if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
     if Beryllium or Magnesium return "2 bonds Be,Mg";
     if Boron or Aluminum return "3 bonds B,Al";
@@ -74,5 +74,5 @@ int main(){
     }
     
     return null**/    
-}    
+//}    
              

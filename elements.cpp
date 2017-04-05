@@ -55,8 +55,10 @@ enum elements_hydrogen_to_argon {
 
     //access coordinates.csv file array/struct
     //read .csv array file
-      
-int main() {
+   
+
+   //reads elements and gives number of bonds   
+string elements_to_bonds {
  
    if Hydrogen, Lithium, or Sodium return "1 bond H,Li,Na";
    if Beryllium or Magnesium return "2 bonds Be,Mg";
@@ -68,5 +70,5 @@ int main() {
    if Helium, Neon, or Argon return "0 bonds He,Ne,Ar";   
    }    
 
-return null;
+return "null";
 }
