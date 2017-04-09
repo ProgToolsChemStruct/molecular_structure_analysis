@@ -12,4 +12,3 @@ private:
     static const string FOOTER_STRING;
 };
 
-
