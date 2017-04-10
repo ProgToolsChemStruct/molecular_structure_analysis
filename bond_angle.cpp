@@ -40,6 +40,8 @@ double z2_unit;
 
 vector< vector<double> > atomic_distance;  //creation of 2D vector containing interatomic distances
 vector< vector<int> > bond_exist;  //creation of 2D vector containing 1 for bond exists and 0 for bond does not exist
+vector< vector<double> > unit_vector;  //creation of 2D vector containing xyz unit vectors
+vector< vector< vector<double> > > bond_angle;  //creation of 3D vector to contain bond angles between atoms i, j and k
 
 void atom_dist() {
     
@@ -66,43 +68,34 @@ void atom_dist() {
                                     ((pow(x2_double - x1_double, 2))) + 
                                     ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
                                     ((pow(z2_double - z1_double, 2)))));
-        
-            cout << atomic_distance[i][j];
-            log << atomic_distance[i][j];
+            
+	    double distance_ij = atomic_distance[i][j];  //converting vector positions to doubles
         }
     }
 
     for(i = 0; i < totalatoms; i++) {
         for(j = i + 1; j < totalatoms; j++) {
-            if(atomic_distance[i][j] > bond_distance) {
-                bond_exist[i][j] = 0; 
+            if(atomic_distance[i][j] > bond_distance) {  //if interatomic distance is greater than 1.54 Angstroms
+                bond_exist[i][j] = 0;  //0 for non-bonding
 		}
-            else bond_exist[i][j] = 1;
-            
-            cout << bond_exist[i][j];
-            log << bond_exist[i][j];        
+            else bond_exist[i][j] = 1;  //1 for bonding
         }
     }
 }
 
-double angle_phi() {
+void angle_phi() {
 
     ofstream log;
     log.open("log.txt", ios::app);
 
-    vector< vector<double> > unit_vector;  //creation of 2D vector to contain x,y,z unit vectors
-
     for(i = 0; i < totalatoms; i++) {
         for(j = i + 1; j <= 4 ; j++) {
-            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector array
+            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
             x2_unit = unit_vector[j][2];
             y1_unit = unit_vector[i][3];
             y2_unit = unit_vector[j][3];
             z1_unit = unit_vector[i][4];
             z2_unit = unit_vector[j][4];
-        
-            cout << unit_vector[i][j];
-            log << unit_vector[i][j];
         
             if(bond_exist[i][j] = 1) {
                 x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);  //calculation of unit vectors between bonded atoms
@@ -111,24 +104,19 @@ double angle_phi() {
                 y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
                 z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
                 z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
-            }
-        
-            if(bond_exist[i][j] = 0) {
-            
-            }
+            }        
         }
     }
 
-    double bond_angle[totalatoms][5][k];  //creation of 3D array to store calculated bond angles between atoms i, j and k
-
     for(i = 0; i < totalatoms; i++) {
-        for(j = i + 1; j < 5; j++) {
+        for(j = i + 1; j < i; j++) {
             for(k = j + 1; k < j; k++) {
                 bond_angle[i][j][k] = (acos(
                                       (x1_unit) * (x2_unit) + 
                                       (y1_unit) * (y2_unit) +  //calculation of bond angle between i, j and k
                                       (z1_unit) * (z2_unit)));
-            }
+                double angle_phi = bond_angle[i][j][k];            
+	    }
         }
     }
 }
