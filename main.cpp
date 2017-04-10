@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 #include "main.h"
 #include "extraction.h"
@@ -65,7 +66,7 @@ int main(int argc, char* argv[])
     //Open the file bond_length.cpp and check that it opened
     bond_length.open("bond_length.cpp");
     if (!bond_length.is_open()) {
-         cout << "Erorr: Unable to open bond_length file.";
+         cout << "Error: Unable to open bond_length file.";
 	 return 1;
     }
     
@@ -111,6 +112,32 @@ int main(int argc, char* argv[])
         cout << "Error: Unable to open file bond_angle.";
         return 1;
     }
+    
+    //Calculate molecule's interatomic distances
+    int i, j;
+    double distance_ij;
+    
+    cout << "Interatomic distances (in Angstroms): " << endl;
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {        
+            cout << i << "  " << j << "  " << distance_ij << endl;
+	 }
+    }
+    
+    //Calculate the model's bond angles
+    int k;
+    double x1_double, x2_double, y1_double, y2_double, z1_double, z2_double;
+    double angle_phi;
+        
+    cout << "Bond angles (in degrees): " << endl;
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {
+            for(k = j + 1; k < totalatoms; k++) {
+	        cout << i << "  " << j << "  " << k << "  " << angle_phi << endl;
+	    }
+	}
+    }    
+    
     //Close the file bond_angle.cpp
     bond_angle.close();
     cout << "Bond angle calculation complete." << endl;
