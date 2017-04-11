@@ -6,56 +6,61 @@
   *
   * The purpose of this program is to identify the first eighteen elements,     
   * hydrogen to argon, and assign them a number starting with 1.
-  **/ 
-
+  */ 
+#include <stdlib.h>     /* exit, EXIT_FAILURE */  
+  
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
 using namespace std; 
     
-    enum elements_hydrogen_to_argon {
-     HYDROGEN = 1,
-     HELIUM,
-     LITHIUM,
-     BERLLYIUM,
-     BORON,
-     CARBON,
-     NITROGEN,
-     OXYGEN,
-     FLUORINE,
-     NEON,
-     SODIUM,
-     MAGNESIUM,
-     ALUMINUM,
-     SILICON,
-     PHOSPHOROUS,
-     SULFUR,
-     CHLORINE,
-     ARGON 
-     };
+enum elements_hydrogen_to_argon {
+    HYDROGEN,
+    HELIUM,
+    LITHIUM,
+    BERLLYIUM,
+    BORON,
+    CARBON,
+    NITROGEN,
+    OXYGEN,
+    FLUORINE,
+    NEON,
+    SODIUM,
+    MAGNESIUM,
+    ALUMINUM,
+    SILICON,
+    PHOSPHOROUS,
+    SULFUR,
+    CHLORINE,
+    ARGON 
+};
     
     elements_hydrogen_to_argon element;
  
     string elements_to_string (elements_hydrogen_to_argon d) {
      
-     if (element == HYDROGEN   ) return "Hydrogen";
-     if (element == HELIUM     ) return "Helium";
-     if (element == LITHIUM    ) return "Lithium";
-     if (element == BERLLYIUM  ) return "Beryllium";
-     if (element == BORON      ) return "Boron";
-     if (element == CARBON     ) return "Carbon";
-     if (element == NITROGEN   ) return "Nitrogen";
-     if (element == OXYGEN     ) return "Oxygen";
-     if (element == FLUORINE   ) return "Fluorine";
-     if (element == NEON       ) return "Neon";
-     if (element == SODIUM     ) return "Sodium";
-     if (element == MAGNESIUM  ) return "Magnesium";
-     if (element == ALUMINUM   ) return "Aluminum";
-     if (element == SILICON    ) return "Silicon";
-     if (element == PHOSPHOROUS) return "Phosphorous";
-     if (element == SULFUR     ) return "Sulfur";
-     if (element == CHLORINE   ) return "Chlorine";
-     if (element == ARGON      ) return "Argon";
-    
-    }
+        if (element == HYDROGEN   ) return "H";
+        if (element == HELIUM     ) return "He";
+        if (element == LITHIUM    ) return "Li";
+        if (element == BERLLYIUM  ) return "Be";
+        if (element == BORON      ) return "B";
+        if (element == CARBON     ) return "C";
+        if (element == NITROGEN   ) return "N";
+        if (element == OXYGEN     ) return "O";
+        if (element == FLUORINE   ) return "Fl";
+        if (element == NEON       ) return "Ne";
+        if (element == SODIUM     ) return "Na";
+        if (element == MAGNESIUM  ) return "Mg";
+        if (element == ALUMINUM   ) return "Al";
+        if (element == SILICON    ) return "Si";
+        if (element == PHOSPHOROUS) return "P";
+        if (element == SULFUR     ) return "S";
+        if (element == CHLORINE   ) return "Cl";
+        if (element == ARGON      ) return "Ar";
+        
+	cout << "Non-specified element present";
+	/* exit, EXIT_FAILURE */     
+
+return 0;
+}
 #endif //ELEMENTS_H 

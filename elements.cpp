@@ -5,10 +5,12 @@
 
 using namespace std; 
 
-//reference header from elements.h  
-      
+//reference header from elements.h 
+ 
+//enum file for elements that will be called on in distance.cpp       
 enum elements_hydrogen_to_argon {
-    HYDROGEN = 1,
+   
+    HYDROGEN,
     HELIUM,
     LITHIUM,
     BERLLYIUM,
@@ -27,32 +29,30 @@ enum elements_hydrogen_to_argon {
     CHLORINE,
     ARGON,
 
-    };
+};
     
     elements_hydrogen_to_argon element;
 
-    string elements_to_string (elements_hydrogen_to_argon d) {
+    string elements_to_string (elements_hydrogen_to_argon d) { 
      
-     if (element == HYDROGEN   ) return "Hydrogen";
-     if (element == HELIUM     ) return "Helium";
-     if (element == LITHIUM    ) return "Lithium";
-     if (element == BERLLYIUM  ) return "Beryllium";
-     if (element == BORON      ) return "Boron";
-     if (element == CARBON     ) return "Carbon";
-     if (element == NITROGEN   ) return "Nitrogen";
-     if (element == OXYGEN     ) return "Oxygen";
-     if (element == FLUORINE   ) return "Fluorine";
-     if (element == NEON       ) return "Neon";
-     if (element == SODIUM     ) return "Sodium";
-     if (element == MAGNESIUM  ) return "Magnesium";
-     if (element == ALUMINUM   ) return "Aluminum";
-     if (element == SILICON    ) return "Silicon";
-     if (element == PHOSPHOROUS) return "Phosphorous";
-     if (element == SULFUR     ) return "Sulfur";
-     if (element == CHLORINE   ) return "Chlorine";
-     if (element == ARGON      ) return "Argon";  
+        if (element == HYDROGEN   ) return "Hydrogen";
+        if (element == HELIUM     ) return "Helium";
+        if (element == LITHIUM    ) return "Lithium";
+        if (element == BERLLYIUM  ) return "Beryllium";
+        if (element == BORON      ) return "Boron";
+        if (element == CARBON     ) return "Carbon";
+        if (element == NITROGEN   ) return "Nitrogen";
+        if (element == OXYGEN     ) return "Oxygen";
+        if (element == FLUORINE   ) return "Fluorine";
+        if (element == NEON       ) return "Neon";
+        if (element == SODIUM     ) return "Sodium";
+        if (element == MAGNESIUM  ) return "Magnesium";
+        if (element == ALUMINUM   ) return "Aluminum";
+        if (element == SILICON    ) return "Silicon";
+        if (element == PHOSPHOROUS) return "Phosphorous";
+        if (element == SULFUR     ) return "Sulfur";
+        if (element == CHLORINE   ) return "Chlorine";
+        if (element == ARGON      ) return "Argon";  
    
-    }; 
+}; 
 
-    //access coordinates.csv file array/struct
-    //read .csv array file
