@@ -97,7 +97,7 @@ void angle_phi() {
             z1_unit = unit_vector[i][4];
             z2_unit = unit_vector[j][4];
         
-            if(bond_exist[i][j] = 1) {
+            if(bond_exist[i][j] == 1) {
                 x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);  //calculation of unit vectors between bonded atoms
                 x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);
                 y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
