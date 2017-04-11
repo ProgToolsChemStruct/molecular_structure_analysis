@@ -41,16 +41,14 @@ int main(int argc, char* argv[])
     fstream bond_length;
 
     //Check that inputfile was directed into the command line
-    if (argc < 2)
-    {
+    if (argc < 2){
         cout << "Error: Inputfile not specified in command line\n";
         return 1;
     }
 
     //Generate a logfile
     logfile.open("log.txt");
-    if (!logfile.is_open())
-    {
+    if (!logfile.is_open()){
         cout << "Error: Unable to open the logfile.";
         return 3;
     } else {
