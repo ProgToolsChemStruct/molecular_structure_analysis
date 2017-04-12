@@ -27,38 +27,38 @@ vector< vector<int> > bond_exist;  //creation of 2D vector: 1 for bond exists an
 vector< vector<double> > unit_vector;  //creation of 2D vector for xyz unit vectors
 vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond angles
     
-    void Bond_Angle::atom_dist() {
-        ofstream log;
-        log.open("log.txt", ios::app);
+void Bond_Angle::atom_dist() {
+    ofstream log;
+    log.open("log.txt", ios::app);
 
-        cout << "Interatomic distances (in Angstroms): " << endl;
+    cout << "Interatomic distances (in Angstroms): " << endl;
 
-        for(i = 0; i < i < totalatoms; i++) {
-            for(j = i + 1; j < totalatoms; j++) {
-	        atom1_string = (array[i][0]);
-		atom2_string = (array[j][0]);
-                x1_string = (array[i][2]);
-		x2_string = (array[j][2]);
-                y1_string = (array[i][3]);
-                y2_string = (array[j][3]);
-                z1_string = (array[i][4]);
-                z2_string = (array[j][4]);
+    for(i = 0; i < i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {
+            atom1_string = (array[i][0]);
+	    atom2_string = (array[j][0]);
+            x1_string = (array[i][2]);
+	    x2_string = (array[j][2]);
+            y1_string = (array[i][3]);
+            y2_string = (array[j][3]);
+            z1_string = (array[i][4]);
+            z2_string = (array[j][4]);
 
-                x1_double = atof(x1_string.c_str());  //converting xyz coordinate strings to doubles
-                x2_double = atof(x2_string.c_str());
-                y1_double = atof(y1_string.c_str());
-                y2_double = atof(y2_string.c_str());
-                z1_double = atof(z1_string.c_str());
-                z2_double = atof(z2_string.c_str());
+            x1_double = atof(x1_string.c_str());  //converting xyz coordinate strings to doubles
+            x2_double = atof(x2_string.c_str());
+            y1_double = atof(y1_string.c_str());
+            y2_double = atof(y2_string.c_str());
+            z1_double = atof(z1_string.c_str());
+            z2_double = atof(z2_string.c_str());
 
- 		double distance = (sqrt(
-                                  ((pow(x2_double - x1_double, 2))) + 
-                                  ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
-                                  ((pow(z2_double - z1_double, 2)))));
+            double distance = (sqrt(
+                              ((pow(x2_double - x1_double, 2))) + 
+                              ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
+                              ((pow(z2_double - z1_double, 2)))));
 		
-		atomic_distance.push_back(distance);	
+            atomic_distance.push_back(distance);	
 	         		
-		cout << atom1_string << "  " << atom2_string << "   " << distance << endl;
+            cout << atom1_string << "  " << atom2_string << "   " << distance << endl;
             }
         }
 
@@ -71,35 +71,33 @@ vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond
             }
         }
     }
-<<<<<<< HEAD
 
-    void Bond_Angle::angle_phi() {
+void Bond_Angle::angle_phi() {
 
-        ofstream log;
-        log.open("log.txt", ios::app);
+    ofstream log;
+    log.open("log.txt", ios::app);
     
-        cout << "Bond angles (in degrees): " << endl;
+    cout << "Bond angles (in degrees): " << endl;
 
-        for(i = 0; i < totalatoms; i++) {
-            for(j = i + 1; j <= 4 ; j++) {
-                x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
-                x2_unit = unit_vector[j][2];
-                y1_unit = unit_vector[i][3];
-                y2_unit = unit_vector[j][3];
-                z1_unit = unit_vector[i][4];
-                z2_unit = unit_vector[j][4];
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j <= 4 ; j++) {
+            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
+            x2_unit = unit_vector[j][2];
+            y1_unit = unit_vector[i][3];
+            y2_unit = unit_vector[j][3];
+            z1_unit = unit_vector[i][4];
+            z2_unit = unit_vector[j][4];
 
-                if(bond_exist[i][j] == 1) {
-                    x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);  //calculation of unit vectors between bonded atoms
-                    x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);
-                    y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
-                    y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
-                    z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
-                    z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
-                }        
-            }
-=======
-}
+            if(bond_exist[i][j] == 1) {
+                x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);  //calculation of unit vectors between bonded atoms
+                x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);
+                y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
+                y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
+                z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
+                z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
+            }        
+        }
+    }
 
 void angle_phi() {
 
@@ -123,7 +121,6 @@ void angle_phi() {
                 z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
                 z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
             }        
->>>>>>> 73302a6d03d47654ce12247baec8e65eab09aec4
         }
 
         for(i = 0; i < totalatoms; i++) {
