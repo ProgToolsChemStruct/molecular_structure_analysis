@@ -32,45 +32,20 @@ class Extraction
     unsigned int count_line; /**< Public counter for determining location of keywords */
 
 /**
- * @brief Function used to trim the header from extracted coords and count total atoms.
- * 
  * This function "cleans" the specified lines from the top of the coords.  It is dependent
  * on the integer @p q which is used to determine the number of lines to not be included.
- * For simplicity, this function achieves the end resutl by extracting all info after the
+ * For simplicity, this function achieves the end result by extracting all info after the
  * specified amount and writing it to a new file.  In addition, the function counts the
  * total number of atoms in the model with the counter @c count_line storing it in the
- * external variable @c total_atoms for other use.
- * @param q This parameter is an integer used to determine the number of lines to trim
- * @return This function returns a file containing the elements and their coordinates 
- * in .csv format.
- * @see count_line 
+ * external variable @c total_atoms for other use. 
  */
     void trim_coords(int q);
 
 /**
- * @brief Function used to generate a 2D array from the coords file
- *
  * This function generates an externally accessible array @c array containing the 
  * elements, their freeze codes (0 or -1) and their X, Y, Z Cartesian coordinates. These
  * characteristics are also stored in a file @c coordinates.txt that is accessible by the 
- * user after the program is run.  Due to the fact that the function is extracting its 
- * info from a @c .csv file instead of the desired space- or tab-separated file, the data
- * is extracted in two parts.  The first part:
- * @code
- * while (getline(cleancoords,line)) {
- *     sub_array.clear();
- *     stringstream newstring(line);
- * @endcode
- * obtains each line from the file and reads it directly as a string.  The second part is
- * nested after the first part and is:
- * @code
- * while (getline(newstring, sub_line, ',')) {
- *     sub_array.push_back(sub_line);
- * }
- * @endcode
- * separates the parts of the string based upon the presence of the comma delimiter. These
- * species are then read into the final 2D vector @c array via nested for-loops.
- * @return This function returns the output file @c coordinates.txt and vector @array.
+ * user after the program is run.
  */
     void array_coords();
 
