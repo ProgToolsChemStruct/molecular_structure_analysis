@@ -99,42 +99,18 @@ void Bond_Angle::angle_phi() {
         }
     }
 
-void angle_phi() {
-
-    ofstream log;
-    log.open("log.txt", ios::app);
-
     for(i = 0; i < totalatoms; i++) {
-        for(j = i + 1; j <= 4 ; j++) {
-            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
-            x2_unit = unit_vector[j][2];
-            y1_unit = unit_vector[i][3];
-            y2_unit = unit_vector[j][3];
-            z1_unit = unit_vector[i][4];
-            z2_unit = unit_vector[j][4];
-        
-            if(bond_exist[i][j] == 1) {
-                x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);  //calculation of unit vectors between bonded atoms
-                x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);
-                y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
-                y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
-                z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
-                z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
-            }        
-        }
+        for(j = i + 1; j < totalatoms; j++) {
+            for(k = j + 1; k < totalatoms; k++) {
+                bond_angle[i][j][k] = (acos(
+                                      (x1_unit) * (x2_unit) + 
+                                      (y1_unit) * (y2_unit) +  //calculation of bond angle
+                                      (z1_unit) * (z2_unit)));
 
-        for(i = 0; i < totalatoms; i++) {
-            for(j = i + 1; j < totalatoms; j++) {
-                for(k = j + 1; k < totalatoms; k++) {
-                    bond_angle[i][j][k] = (acos(
-                                          (x1_unit) * (x2_unit) + 
-                                          (y1_unit) * (y2_unit) +  //calculation of bond angle
-                                          (z1_unit) * (z2_unit)));
+                double angle_phi = bond_angle[i][j][k];
 
-                    double angle_phi = bond_angle[i][j][k];
-
-		    cout << i << "  " << j << "  " << k << "  " << angle_phi << endl;            
-                }
+                cout << i << "  " << j << "  " << k << "  " << angle_phi << endl;            
             }
         }
     }
+}
