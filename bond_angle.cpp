@@ -71,6 +71,7 @@ vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond
             }
         }
     }
+<<<<<<< HEAD
 
     void Bond_Angle::angle_phi() {
 
@@ -97,6 +98,32 @@ vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond
                     z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
                 }        
             }
+=======
+}
+
+void angle_phi() {
+
+    ofstream log;
+    log.open("log.txt", ios::app);
+
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j <= 4 ; j++) {
+            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
+            x2_unit = unit_vector[j][2];
+            y1_unit = unit_vector[i][3];
+            y2_unit = unit_vector[j][3];
+            z1_unit = unit_vector[i][4];
+            z2_unit = unit_vector[j][4];
+        
+            if(bond_exist[i][j] == 1) {
+                x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);  //calculation of unit vectors between bonded atoms
+                x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i][j]);
+                y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
+                y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i][j]);
+                z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
+                z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i][j]);
+            }        
+>>>>>>> 73302a6d03d47654ce12247baec8e65eab09aec4
         }
 
         for(i = 0; i < totalatoms; i++) {
