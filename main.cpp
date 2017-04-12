@@ -1,18 +1,3 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-
-#include "main.h"
-#include "extraction.h"
-#include "bond_angle.h"
-#include "dihedral_angle.h"
-#include "elements.h"
-//#include "bond_length.h"
-//#include "bond_number.h"
-#include "distance.h"
-
-using namespace std;
 /**
  * @mainpage The Gaussian Optimization Analytical Tool (GOAT)
  *
@@ -28,27 +13,44 @@ using namespace std;
  *
  * The purpose of this program is to provide preliminary structural information on biomolecules
  * optimized using Gaussian computational chemistry software.  Structural and chemical properties
- * identified include: element identification, bond length, bond order, central angles, and torsional
+ * identified include: element identification, bond length, bond angles, and dihedral
  * angles.  Input of the file to be analyzed will result in an output file listing all the structural
- * information of the biomolecule.
+ * information of the molecule.
  */
 
-int main(int argc, char* argv[])
-{
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <vector>
+#include <cmath>
+
+#include "main.h"
+#include "extraction.h"
+#include "bond_angle.h"
+#include "dihedral_angle.h"
+#include "elements.h"
+//#include "bond_length.h"
+//#include "bond_number.h"
+#include "distance.h"
+
+using namespace std;
+
+int main(int argc, char* argv[]) {
+
     ofstream logfile;
     fstream bond_angle;
     fstream dihedral_angle;
     fstream bond_length;
 
     //Check that inputfile was directed into the command line
-    if (argc < 2){
+    if (argc < 2) {
         cout << "Error: Inputfile not specified in command line\n";
         return 1;
     }
 
     //Generate a logfile
     logfile.open("log.txt");
-    if (!logfile.is_open()){
+    if (!logfile.is_open()) {
         cout << "Error: Unable to open the logfile.";
         return 3;
     } else {
@@ -64,8 +66,8 @@ int main(int argc, char* argv[])
     //Open the file bond_length.cpp and check that it opened
     bond_length.open("bond_length.cpp");
     if (!bond_length.is_open()) {
-         cout << "Erorr: Unable to open bond_length file.";
-	 return 1;
+         cout << "Error: Unable to open bond_length file.";
+	       return 1;
     }
     
     //Close the file bond_length.cpp
@@ -103,26 +105,13 @@ int main(int argc, char* argv[])
 
     cout << "Model's Center of Mass coordinates: " << endl
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
- 
-    //Open the file bond_angle.cpp and check that it opened
-    bond_angle.open("bond_angle.cpp");
-    if (!bond_angle.is_open()) {
-        cout << "Error: Unable to open file bond_angle.";
-        return 1;
-    }
-    //Close the file bond_angle.cpp
-    bond_angle.close();
-    cout << "Bond angle calculation complete." << endl;
-    return 0;
     
-    //Open the file dihedral_angle.cpp and check that it opened
-    dihedral_angle.open("dihedral_angle.cpp");
-    if (!dihedral_angle.is_open()) {
-        cout << "Error: Unable to open file dihedral_angle.";
-        return 1;
-    }
-    //Close the file dihedral_angle.cpp
-    dihedral_angle.close();
-    cout << "Dihedral angle calculation complete.";
-    return 0;
+    //Output the calculated interatomic distances
+    Bond_Angle model;
+    model.atom_dist();
+        
+    //Calculate the molecule's bond angles
+    
+    //Calculate the molecule's dihedral angles
+    
 }
