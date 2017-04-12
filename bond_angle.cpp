@@ -1,54 +1,116 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <cstdio>
+#include <sstream>
+#include <cassert>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <iomanip>
 #include "bond_angle.h"
 
 using namespace std;
 
-double ex_ji(double x_j, double x_i, double R_ji) {     
-    return ((-(x_j - x_i)) / R_ji);
-}
+extern unsigned int totalatoms;  //referring to totalatoms in extraction.cpp
+extern vector< vector<string> > array;
 
-double ey_ji(double y_j, double y_i, double R_ji) {
-    return ((-(y_j - y_i)) / R_ji);
-}
+int bond_distance = 1.55;  //average bond distance in Angstroms
 
-double ez_ji(double z_j, double z_i, double R_ji) {
-    return ((-(z_j - z_i)) / R_ji);
-}    
+int i, j, k;
+string atom1_string, atom2_string;
+string x1_string, x2_string, y1_string, y2_string, z1_string, z2_string;  //xyz coordinates as strings
+double x1_double, x2_double, y1_double, y2_double, z1_double, z2_double;  //xyz coordinates as doubles
+double x1_unit, x2_unit, y1_unit, y2_unit, z1_unit, z2_unit;  //xyz unit vectors
+vector<double> atomic_distance;  //creation of 2D vector for interatomic distances
+vector< vector<int> > bond_exist;  //creation of 2D vector: 1 for bond exists and 0 for bond does not exist
+vector< vector<double> > unit_vector;  //creation of 2D vector for xyz unit vectors
+vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond angles
+    
+void Bond_Angle::atom_dist() {
+    ofstream log;
+    log.open("log.txt", ios::app);
 
-double ex_jk(double x_j, double x_k, double R_jk) {     
-    return ((-(x_j - x_k)) / R_jk);
-}
+    cout << "Interatomic distances (in Angstroms): " << endl;
 
-double ey_jk(double y_j, double y_k, double R_jk) {
-    return ((-(y_j - y_k)) / R_jk);
-}
+    for(i = 0; i < i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {
+            atom1_string = (array[i][0]);
+	    atom2_string = (array[j][0]);
+            x1_string = (array[i][2]);
+	    x2_string = (array[j][2]);
+            y1_string = (array[i][3]);
+            y2_string = (array[j][3]);
+            z1_string = (array[i][4]);
+            z2_string = (array[j][4]);
 
-double ez_jk(double z_j, double z_k, double R_jk) {
-    return ((-(z_j - z_k)) / R_jk);
-}  
+            x1_double = atof(x1_string.c_str());  //converting xyz coordinate strings to doubles
+            x2_double = atof(x2_string.c_str());
+            y1_double = atof(y1_string.c_str());
+            y2_double = atof(y2_string.c_str());
+            z1_double = atof(z1_string.c_str());
+            z2_double = atof(z2_string.c_str());
 
-double ex_kl(double x_k, double x_l, double R_kl) {     
-    return ((-(x_k - x_l)) / R_kl);
-}
+            double distance = (sqrt(
+                              ((pow(x2_double - x1_double, 2))) + 
+                              ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
+                              ((pow(z2_double - z1_double, 2)))));
+		
+            atomic_distance.push_back(distance);	
+	         		
+            cout << atom1_string << "  " << atom2_string << "   " << distance << endl;
+            }
+        }
 
-double ey_kl(double y_k, double y_l, double R_kl) {
-    return ((-(y_k - y_l)) / R_kl);
-}
+        for(i = 0; i < totalatoms; i++) {
+            for(j = i + 1; j < totalatoms; j++) {
+                if(atomic_distance[i] > bond_distance) {  //if interatomic distance is greater than 1.55 Angstroms
+                    bond_exist[i][j] = 0;  //0 for non-bonding
+                }
+                else bond_exist[i][j] = 1;  //1 for bonding
+            }
+        }
+    }
 
-double ez_kl(double z_k, double z_l, double R_kl) {
-    return ((-(z_k - z_l)) / R_kl);
-}
+void Bond_Angle::angle_phi() {
 
-double phi_ijk(
-    double ex_ji, double ey_ji, double ez_ji, 
-    double ex_jk, double ey_jk, double ez_jk) {
-    return acos((ex_ji) * (ex_jk) + (ey_ji) * (ey_jk) + (ez_ji) * (ez_jk));
-}
+    ofstream log;
+    log.open("log.txt", ios::app);
+    
+    cout << "Bond angles (in degrees): " << endl;
 
-double phi_jkl(
-    double ex_kj, double ey_kj, double ez_kj, 
-    double ex_kl, double ey_kl, double ez_kl) {
-    return acos((ex_kj) * (ex_kl) + (ey_kj) * (ey_kl) + (ez_kj) * (ez_kl));
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j <= 4 ; j++) {
+            x1_unit = unit_vector[i][2];  //placement of unit vectors in unit_vector
+            x2_unit = unit_vector[j][2];
+            y1_unit = unit_vector[i][3];
+            y2_unit = unit_vector[j][3];
+            z1_unit = unit_vector[i][4];
+            z2_unit = unit_vector[j][4];
+
+            if(bond_exist[i][j] == 1) {
+                x1_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);  //calculation of unit vectors between bonded atoms
+                x2_unit = ((-(x2_double - x1_double)) / atomic_distance[i]);
+                y1_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
+                y2_unit = ((-(y2_double - y1_double)) / atomic_distance[i]);
+                z1_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
+                z2_unit = ((-(z2_double - z1_double)) / atomic_distance[i]);
+            }        
+        }
+    }
+
+    for(i = 0; i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {
+            for(k = j + 1; k < totalatoms; k++) {
+                bond_angle[i][j][k] = (acos(
+                                      (x1_unit) * (x2_unit) + 
+                                      (y1_unit) * (y2_unit) +  //calculation of bond angle
+                                      (z1_unit) * (z2_unit)));
+
+                double angle_phi = bond_angle[i][j][k];
+
+                cout << i << "  " << j << "  " << k << "  " << angle_phi << endl;            
+            }
+        }
+    }
 }
