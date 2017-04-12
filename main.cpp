@@ -17,7 +17,7 @@
  * angles.  Input of the file to be analyzed will result in an output file listing all the structural
  * information of the molecule.
  */
- 
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -29,8 +29,9 @@
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 #include "elements.h"
-#include "bond_length.h"
+//#include "bond_length.h"
 //#include "bond_number.h"
+#include "distance.h"
 
 using namespace std;
 
@@ -66,7 +67,7 @@ int main(int argc, char* argv[]) {
     bond_length.open("bond_length.cpp");
     if (!bond_length.is_open()) {
          cout << "Error: Unable to open bond_length file.";
-	 return 1;
+	       return 1;
     }
     
     //Close the file bond_length.cpp
@@ -110,7 +111,6 @@ int main(int argc, char* argv[]) {
     model.atom_dist();
         
     //Calculate the molecule's bond angles
-    
     
     //Calculate the molecule's dihedral angles
     
