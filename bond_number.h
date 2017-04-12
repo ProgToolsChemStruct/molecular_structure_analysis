@@ -1,4 +1,3 @@
-
 /**
   * @file elements.cpp
   * @author Hananh Lozano
@@ -19,7 +18,7 @@ int max_bond_number (enum elements_hydrogen_to_argon key){
     3,2,1,0,1,2,
     3,4,3,2,1,0;
     
-    cout << "Max bond number is :" << endl;
+    cout << "Max bond number is: " << max_bond_number <<"    "<< endl;
 }    
 
 #endif //BOND_NUMBER_H
