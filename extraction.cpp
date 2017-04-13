@@ -19,9 +19,9 @@ int extract_input(const char *inputfile) {
     int i;
     int count_line = 0;
     
-    vector<string> temp_vector;    
+    vector<string> temp_vector;
 
-    assert(orig_file.good());    
+    assert(orig_file.good());
     log.open("log.txt", ios::app);
 
     //Parse for header key phrase
