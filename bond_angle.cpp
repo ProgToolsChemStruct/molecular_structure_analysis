@@ -13,7 +13,7 @@
 using namespace std;
 
 extern unsigned int totalatoms;  //referring to totalatoms in extraction.cpp
-extern vector< vector<string> > array;
+extern vector< vector<string> > vector_coords;
 
 int bond_distance = 1.55;  //average bond distance in Angstroms
 
@@ -35,14 +35,14 @@ void Bond_Angle::atom_dist() {
 
     for(i = 0; i < i < totalatoms; i++) {
         for(j = i + 1; j < totalatoms; j++) {
-            atom1_string = (array[i][0]);
-	    atom2_string = (array[j][0]);
-            x1_string = (array[i][2]);
-	    x2_string = (array[j][2]);
-            y1_string = (array[i][3]);
-            y2_string = (array[j][3]);
-            z1_string = (array[i][4]);
-            z2_string = (array[j][4]);
+            atom1_string = (vector_coords[i][0]);
+	    atom2_string = (vector_coords[j][0]);
+            x1_string = (vector_coords[i][2]);
+	    x2_string = (vector_coords[j][2]);
+            y1_string = (vector_coords[i][3]);
+            y2_string = (vector_coords[j][3]);
+            z1_string = (vector_coords[i][4]);
+            z2_string = (vector_coords[j][4]);
 
             x1_double = atof(x1_string.c_str());  //converting xyz coordinate strings to doubles
             x2_double = atof(x2_string.c_str());

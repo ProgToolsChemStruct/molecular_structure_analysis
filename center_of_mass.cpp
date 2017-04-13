@@ -44,8 +44,8 @@ double calculate_total_mass ()
     for (int i = 0; i < totalatoms; i++)
     {
         int element_number;
-        extern vector< vector<string> > array;
-        element_number = symbol_to_atomic_number(array[i][0]);
+        extern vector< vector<string> > vector_coords;
+        element_number = symbol_to_atomic_number(vector_coords[i][0]);
         log << element_number << "     ";
         total_mass = total_mass + atomic_masses[element_number];
         log << std::scientific << total_mass << endl;
@@ -87,11 +87,11 @@ double calc_prod_coords_mass(int position)
         double element_mass;
         string coordinate_string;
         double coordinate_double;
-        extern vector< vector<string> > array;
+        extern vector< vector<string> > vector_coords;
 
-        element_mass = atomic_masses[symbol_to_atomic_number(array[i][0])];
+        element_mass = atomic_masses[symbol_to_atomic_number(vector_coords[i][0])];
         log << element_mass << "     ";
-        coordinate_string = array[i][position];
+        coordinate_string = vector_coords[i][position];
         coordinate_double = atof(coordinate_string.c_str());
         product = product + (element_mass * coordinate_double);
         log << std::scientific << product << endl;

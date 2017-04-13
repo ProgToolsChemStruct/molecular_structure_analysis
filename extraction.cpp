@@ -1,145 +1,97 @@
 #include "extraction.h"
-#include <cstdio>
-#include <cassert>
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-#include <vector>
-#include <sstream>
 
 using namespace std;
 
-//Deconstructor and Constructor Functions
-Extraction::~Extraction(){}
+vector< vector<string> > vector_coords;
 
+int totalatoms = 10;
 
-Extraction::Extraction(const char *inputfile)
-{
-    //Open and extract rough coords from inputfile
+//Extracts Coords from Input and places them into a 2D array
+int extract_input(const char *inputfile) {
+
     ifstream orig_file(inputfile);
-    assert(orig_file.good());
-
-    ofstream coordfile;
     ofstream log;
-    coordfile.open("coordinates.txt");
-    log.open("log.txt", ios::app);
 
-    unsigned int count_line = 0;
+    string line, sub_line;
     string header1 = "Redundant internal coordinates found in file";
     string footer1 = "Recover connectivity data from disk.";
 
-    while (getline(orig_file, line)) {
+    int i;
+    int count_line = 0;
+    
+    vector<string> temp_vector;    
+
+    assert(orig_file.good());    
+    log.open("log.txt", ios::app);
+
+    //Parse for header key phrase
+    while(getline(orig_file, line)) {
         count_line++;
 
-        if (line.find(header1, 0) != string::npos) {
-            cout << "Found: " << header1 << " at position " << count_line << endl;
+        if(line.find(header1, 0) != string::npos) {
             log << "Found: " << header1 << " at position " << count_line << endl;
 
-            for (int i = 1; i > 0; ++i) {
-                coordfile << line << "\n";
-                log << line << "\n"; 
-                getline (orig_file, line);
+            //If it's found, skip first two lines 
+            for(int i = 0; i < 500; i++) {
+                getline(orig_file, line);
+                if(i < 1) continue;
 
-                if (line.find(footer1, 0) != string::npos) {
-                    cout << "Found: " << footer1 << endl;
-                    log << "Found: " << footer1 << endl;
-                    log << "Search for main coords complete." << endl;
-                    break;
+                //Make sure the string isn't the footer key phrase
+                if (line.find(footer1, 0) == string::npos) {
+
+                    //Place into temporary vector separated by newline
+                    temp_vector.clear();
+                    stringstream newstring(line);
+
+                        //Separate data based upon commas
+                        while(getline(newstring, sub_line, ',')) {
+                            temp_vector.push_back(sub_line);
+                        }
+
+                        //Place comma-separated data into final vector
+                        vector_coords.push_back(temp_vector);
+
+                //When footer is found, end process
+                } else { 
+                      log << "Found: " << footer1 << endl;
+                      log << "Search for main coordinates complete." << endl;
+                      break;
                 }
             }
         }
     }
 
     orig_file.close();
-    coordfile.close();
-}
-
-
-//Clear the top two unneccessary lines from coords file
-unsigned int totalatoms;
-
-void Extraction::trim_coords(int q)
-{
-    ifstream coordsfile;
-    coordsfile.open("coordinates.txt");
-    ofstream log;
-    ofstream cleancoords;
-    log.open("log.txt", ios::app);
-    cleancoords.open("coordinates.csv");
-
-    log << "Beginning attempt to clean coords file";
-
-    int i = 0;
-    count_line = 0;
-
-    while (getline(coordsfile, line)) {
-
-        if (i < q) {
-            i++;
-
-        } else {
-            cleancoords << line << "\n";
-            log << line << "\n";
-            count_line++;
-        }
-    }
-
-    cout << "File successfully cleaned" << endl;
-    log << "File successfully cleaned" << endl;
-
-    totalatoms = count_line;
-
-    coordsfile.close();
     log.close();
-    cleancoords.close();
-    remove("coordinates.txt");
+    return 0;
 }
 
-    
-//Generate a 2D array from the coords file
-vector< vector<string> > array;
+//Prints vector size and vector contents to console, logfile, and outputfile
+int print_vector_coords() {
 
-void Extraction::array_coords()
-{           
-    ifstream cleancoords("coordinates.csv");
-    ofstream outputcoords("coordinates.txt");
     ofstream log;
+    ofstream outputfile;
+
     log.open("log.txt", ios::app);
+    outputfile.open("outputfile.txt", ios::app);
 
-    log << "Beginning generation of 2D array" << endl;
-    outputcoords << totalatoms << endl;
+    cout << "Model Parameters:" << endl << vector_coords.size() << endl;
+    outputfile << "Model Parameters:" << endl << vector_coords.size() << endl;
 
-    while (getline(cleancoords,line)) {
-        sub_array.clear();
-        stringstream newstring(line);
+    for(int i = 0; i < vector_coords.size(); i++) {
 
-        while (getline(newstring, sub_line, ',')) {
-            sub_array.push_back(sub_line);
-        }
-
-        array.push_back(sub_array);
-    }
-
-    int i, j;
-
-    cout << "\nNumber of atoms in the model: " << totalatoms << endl;
-    cout << "Cartesian Coordinates extracted from the model:" << endl;
-
-    for (i = 0; i < array.size(); i++) {
-
-        for (j = 0; j < array[i].size(); j++) {
-            cout << array[i][j] << "     ";
-            log << array[i][j] << "     ";
-            outputcoords << array[i][j] << "     ";
+        for (int j = 0; j < vector_coords[i].size(); j++) {
+            cout << vector_coords[i][j] << "     ";
+            log << vector_coords[i][j] << "     ";
+            outputfile << vector_coords[i][j] << "     ";
         }
 
         cout << endl;
         log << endl;
-        outputcoords << endl;
+        outputfile << endl;
     }
 
-    outputcoords.close();
-    cleancoords.close();
-    remove("coordinates.csv");
+    log.close();
+    outputfile.close();
+    return 0;
 }
-

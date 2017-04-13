@@ -52,17 +52,21 @@ int main(int argc, char* argv[]) {
     logfile.open("log.txt");
     if (!logfile.is_open()) {
         cout << "Error: Unable to open the logfile.";
-        return 3;
+        return 2;
     } else {
         logfile << "Logfile for Gaussian Optimization Analytical Tool" << endl;
     }
 
     //Extract the raw coordinates from the inputfile in the commandline
-    Extraction molecule(argv[1]);
+    if (extract_input(argv[1]) != 0) {
+        cout << "Error occured in extracting the coordinates.\n";
+    } 
 
-    //Clean the coords file
-    molecule.trim_coords(2);
-    
+    //Print the vector size and vector contents
+    if (print_vector_coords() != 0) {
+        cout << "Error occured in printing the coordinates.\n";
+    }
+
     //Open the file bond_length.cpp and check that it opened
     bond_length.open("bond_length.cpp");
     if (!bond_length.is_open()) {
@@ -73,9 +77,6 @@ int main(int argc, char* argv[]) {
     //Close the file bond_length.cpp
     bond_length.close();
     cout << "Bond length calculation complete." ;
-
-    //Generate the 2D array of the coordinates
-    molecule.array_coords();
 
     //Calculate the model's total mass
     double model_mass;
