@@ -1,10 +1,8 @@
 /** 
  * @file extraction.h
  * @author Thomas Summers
- * @date 3 April 2017
+ * @date 13 April 2017
  * 
- * @brief File containing class declarations for extracting info from and input file
- *
  * This file contains the declarations and functions used by the program to extract 
  * the desired coordinates from the user-specified input file and placing them into
  * an array.

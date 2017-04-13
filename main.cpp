@@ -26,6 +26,7 @@
 
 #include "main.h"
 #include "extraction.h"
+#include "center_of_mass.h"
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 #include "elements.h"
@@ -79,34 +80,16 @@ int main(int argc, char* argv[]) {
     cout << "Bond length calculation complete." ;
 
     //Calculate the model's total mass
-    double model_mass;
-    double calculate_total_mass();
-    cout << "Beginning calculation of the total mass of the model." << endl;
-    model_mass = calculate_total_mass();
-    if (model_mass == 0) {
-        cout << "Error: Mass calculated to be zero." << endl;
-        logfile << "Error: Mass calculated to be zero." << endl;
-        logfile.close();
-        return 4;
-    } else {
-        cout << scientific << "Total mass of model: " << model_mass << " amu" << endl;  
-    }
+    double model_mass = calculate_total_mass();
 
-    //Calculate the model's center of mass
-    double xcoord, ycoord, zcoord;
-    double calc_prod_coords_mass(int);
-
-    xcoord = calc_prod_coords_mass(2);
-    ycoord = calc_prod_coords_mass(3);
-    zcoord = calc_prod_coords_mass(4);
-
-    xcoord /= model_mass;
-    ycoord /= model_mass;
-    zcoord /= model_mass;
+    //Calculate the model's center of mass coordinates
+    double xcoord = calc_prod_coords_mass(2) / model_mass;
+    double ycoord = calc_prod_coords_mass(3) / model_mass;
+    double zcoord = calc_prod_coords_mass(4) / model_mass;
 
     cout << "Model's Center of Mass coordinates: " << endl
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
-    
+
     //Output the calculated interatomic distances
     Bond_Angle model;
     model.atom_dist();

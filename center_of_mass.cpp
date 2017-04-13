@@ -28,37 +28,54 @@ int symbol_to_atomic_number (string symb)
     if (symb == " S" ) return 16;
     if (symb == " Cl") return 17;
     if (symb == " Ar") return 18;
+return 0;
 }
 
 
 //Calculate the sum of all of the masses of the elements
-double total_mass = 0.00;
-
-double calculate_total_mass ()
-{
+double calculate_total_mass () {
     ofstream log;
+    ofstream outputfile;
+
     log.open("log.txt", ios::app);
+    outputfile.open("outputfile.txt", ios::app);
 
     log << "Calculations for the total mass of the model:" << endl;
 
-    for (int i = 0; i < totalatoms; i++)
+    extern vector< vector<string> > vector_coords;
+    double total_mass = 0.00;
+
+    for(int i = 0; i < vector_coords.size(); i++)
     {
         int element_number;
-        extern vector< vector<string> > vector_coords;
         element_number = symbol_to_atomic_number(vector_coords[i][0]);
         log << element_number << "     ";
         total_mass = total_mass + atomic_masses[element_number];
         log << std::scientific << total_mass << endl;
     }
 
+    if(total_mass == 0) {
+        cout << "Warning: Mass calculated to be zero." << endl;
+        log << "Warning: Mass calculated to be zero." << endl;
+    }
+
+    cout << "Total Mass of model: " << total_mass << " amu" << endl;
     log << "Total Mass of model: " << total_mass << " amu" << endl;
+    outputfile << "\nTotal Mass of model: " << total_mass << "amu" << endl;
+
     log.close();
+    outputfile.close();
+
     return total_mass;
 }
 
+//Calculates the products between atomic coordinates and their masses
 double calc_prod_coords_mass(int position)
 {
     ofstream log;
+    double product = 0.00;
+    extern vector< vector<string> > vector_coords;
+
     log.open("log.txt", ios::app);
 
     log << "Calculating the product of the coordinates and masses for the ";
@@ -80,14 +97,11 @@ double calc_prod_coords_mass(int position)
         }
     }
 
-    double product = 0.00;
-
-    for (int i = 0; i < totalatoms; i++)
+    for (int i = 0; i < vector_coords.size(); i++)
     {
         double element_mass;
         string coordinate_string;
         double coordinate_double;
-        extern vector< vector<string> > vector_coords;
 
         element_mass = atomic_masses[symbol_to_atomic_number(vector_coords[i][0])];
         log << element_mass << "     ";
