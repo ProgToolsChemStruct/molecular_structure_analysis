@@ -5,6 +5,10 @@ main
 html
 latex
 
+#Ignore Eclipse files
+.cproject
+.project
+
 # Compiled Object files
 *.slo
 *.lo
