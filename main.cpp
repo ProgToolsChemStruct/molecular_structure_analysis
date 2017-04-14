@@ -30,9 +30,9 @@
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 #include "elements.h"
-//#include "bond_length.h"
+#include "bond_length.h"
 //#include "bond_number.h"
-#include "distance.h"
+//#include "distance.h"
 
 using namespace std;
 
@@ -91,7 +91,7 @@ int main(int argc, char* argv[]) {
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
 
     //Output the calculated interatomic distances
-    Bond_Angle model;
+    Bond_Length model;
     model.atom_dist();
         
     //Calculate the molecule's bond angles
