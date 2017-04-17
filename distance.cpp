@@ -1,33 +1,74 @@
 #include <iostream>
-#include <fstream>
-#include <string>
 #include <cmath>
+#include <fstream>
+#include <cstdio>
+#include <sstream>
+#include <cassert>
 #include <vector>
-
+#include <string>
+#include <cstdlib>
+#include <iomanip>
 #include "distance.h"
+#include "bond_number.h"	
 
 using namespace std;
 
-double calc_bond dist () {
-    for ( i=0; i < totalatoms; i++) {
-        extern vector< vector< string> > array; //referencing array created in extraction.cpp 
-	    for (j=i+1; j < totalatoms; j++) {
-	    string string_x1; string_x2; string_y1; string_y2; string_z1; string_z2;
-	        string_x1 = array[i][2]; //turning two numbers from array to string
-	        string_y1 = array[i][3];
-	        string_z1 = array[i][4];
-	        string_x2 = array[j][2];
-	        string_y2 = array[j][3];
-	        string_z2 = array[j][4];
-	    double double_x1; double_x2; double_y1; double_y2; double_z1; double_z2;
-	        double_x1 = atof(string_x1.c_str()) //turning string to a double to a character
-		double_y1 = atof(string_y1.c_str())
-		double_z1 = atof(string_z1.c_str())
-		double_x2 = atof(string_x2.c_str())
-		double_y2 = atof(string_y2.c_str())
-		double_z2 = atof(string_z2.c_str())
-	    distance =sqrt((double_x2-double_x1)pow2)(double_y2-double_y1)pow2)((double_z2-double_z1)pow2))) //calculation of distance between atoms
-	        cout<< "distance from" << i <<  "to" << j << ":     " << distance <<endl;
-            };
-	};
-}		   	
+extern unsigned int totalatoms;  //referring to totalatoms in extraction.cpp
+extern vector< vector<string> > array;
+
+int bond_distance = 1.55;  //average bond distance in Angstroms
+
+int i, j, k;
+string atom1_string, atom2_string;
+string x1_string, x2_string, y1_string, y2_string, z1_string, z2_string;  //xyz coordinates as strings
+double x1_double, x2_double, y1_double, y2_double, z1_double, z2_double;  //xyz coordinates as doubles
+double x1_unit, x2_unit, y1_unit, y2_unit, z1_unit, z2_unit;  //xyz unit vectors
+vector<double> atomic_distance;  //creation of 2D vector for interatomic distances
+vector< vector<int> > bond_exist;  //creation of 2D vector: 1 for bond exists and 0 for bond does not exist
+vector< vector<double> > unit_vector;  //creation of 2D vector for xyz unit vectors
+vector< vector< vector<double> > > bond_angle;  //creation of 3D vector for bond angles
+    
+void distance::atom_dist() {
+    ofstream log;
+    log.open("log.txt", ios::app);
+
+    cout << "Interatomic distances (in Angstroms): " << endl;
+
+    for(i = 0; i < i < totalatoms; i++) {
+        for(j = i + 1; j < totalatoms; j++) {
+            atom1_string = (array[i][0]);
+	    atom2_string = (array[j][0]);
+            x1_string = (array[i][2]);
+	    x2_string = (array[j][2]);
+            y1_string = (array[i][3]);
+            y2_string = (array[j][3]);
+            z1_string = (array[i][4]);
+            z2_string = (array[j][4]);
+
+            x1_double = atof(x1_string.c_str());  //converting xyz coordinate strings to doubles
+            x2_double = atof(x2_string.c_str());
+            y1_double = atof(y1_string.c_str());
+            y2_double = atof(y2_string.c_str());
+            z1_double = atof(z1_string.c_str());
+            z2_double = atof(z2_string.c_str());
+
+            double distance = (sqrt(
+                              ((pow(x2_double - x1_double, 2))) + 
+                              ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
+                              ((pow(z2_double - z1_double, 2)))));
+		
+            atomic_distance.push_back(distance);	
+	         		
+            cout << atom1_string << "  " << atom2_string << "   " << distance << endl;
+            }
+        }
+
+        for(i = 0; i < totalatoms; i++) {
+            for(j = i + 1; j < totalatoms; j++) {
+                if(atomic_distance[i] > bond_distance) {  //if interatomic distance is greater than 1.55 Angstroms
+                    bond_exist[i][j] = 0;  //0 for non-bonding
+                }
+                else bond_exist[i][j] = 1;  //1 for bonding
+            }
+        }
+    }
