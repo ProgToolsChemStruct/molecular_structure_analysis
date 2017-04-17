@@ -58,6 +58,6 @@ string elements_to_string (elements_hydrogen_to_argon d) {
     if (element == CHLORINE   ) return "Chlorine";
     if (element == ARGON      ) return "Argon";  
     cout << "Non-specified element present";
-    /* exit, EXIT_FAILURE */      
+    /* exit, EXIT_FAILURE */;      
 }
 #endif //ELEMENTS_H 

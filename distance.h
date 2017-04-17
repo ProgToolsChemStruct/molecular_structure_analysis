@@ -18,6 +18,13 @@ extern unsigned int totalatoms;
 //define distance
 double distance; 
 
+class distance {
+
+public:
+void atom_dist();
+private:
+
+};
 #endif //DISTANCE_H 
 
   
