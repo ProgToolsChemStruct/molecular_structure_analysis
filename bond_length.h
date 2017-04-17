@@ -22,6 +22,5 @@ private:
 public:
 void atom_dist();
 		 
-void angle_phi();
 };	       
 #endif //BOND_LENGTH_H
