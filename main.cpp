@@ -30,9 +30,10 @@
 #include "bond_angle.h"
 #include "dihedral_angle.h"
 #include "elements.h"
-//#include "bond_length.h"
+#include "bond_length.h"
 //#include "bond_number.h"
-#include "distance.h"
+//#include "distance.h"
+
 
 using namespace std;
 
@@ -94,7 +95,7 @@ int main(int argc, char* argv[]) {
             cout << bond_exist[i][j] << "    ";
         }
         
-	cout << endl;
+	    cout << endl;
 	
     }
         

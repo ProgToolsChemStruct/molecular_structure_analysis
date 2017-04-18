@@ -72,14 +72,14 @@ void atom_distance(int number_atoms) {
 	        bond_exist[i][j] = 1;
 	    } else {
 	        bond_exist[i][j] = 0;
-              }
+           }
 	      
-     	    cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
-            log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
-            outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+     	  cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+          log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+          outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+
         }
     }
-
 }
 
 double unit_vectors(int a1, int a2, int col) {
@@ -118,44 +118,44 @@ void bond_angle_f(int number_atoms) {
 
     for(int i = 0; i < number_atoms; i++) {
         for(int j = i + 1; j < number_atoms; j++) {
-	    if(bond_exist[i][j] == 1) {
-	        for(int k = j + 1; k < number_atoms; k++) {
-		    if(bond_exist[i][k] == 1) {
+	        if(bond_exist[i][j] == 1) {
+	            for(int k = j + 1; k < number_atoms; k++) {
+		            if(bond_exist[i][k] == 1) {
 		      
-		        angRow.clear();
+		            angRow.clear();
 		      
-		        ex_ij = unit_vectors(i,j,2);
-		        ey_ij = unit_vectors(i,j,3);
-		        ez_ij = unit_vectors(i,j,4);
+		            ex_ij = unit_vectors(i,j,2);
+		            ey_ij = unit_vectors(i,j,3);
+		            ez_ij = unit_vectors(i,j,4);
 		      
-		        ex_ik = unit_vectors(i,k,2);
-		        ey_ik = unit_vectors(i,k,3);
-		        ez_ik = unit_vectors(i,k,4);			
+		            ex_ik = unit_vectors(i,k,2);
+		            ey_ik = unit_vectors(i,k,3);
+		            ez_ik = unit_vectors(i,k,4);			
 
-		        angle_phi = (acos(ex_ij * ex_ik +
-			                  ey_ij * ey_ik +  //calculation of bond angle
-			                  ez_ij * ez_ik));
+		            angle_phi = (acos(ex_ij * ex_ik +
+			                          ey_ij * ey_ik +  //calculation of bond angle
+			                          ez_ij * ez_ik));
 		  
-		        angRow.push_back(i);
-		        angRow.push_back(j);
-		        angRow.push_back(k);
+		            angRow.push_back(i);
+		            angRow.push_back(j);
+		            angRow.push_back(k);
 			
-		        angRow.push_back(ex_ij);
-		        angRow.push_back(ey_ij);
-		        angRow.push_back(ez_ij);
+		            angRow.push_back(ex_ij);
+		            angRow.push_back(ey_ij);
+		            angRow.push_back(ez_ij);
 			
-		        angRow.push_back(ex_ik);
-		        angRow.push_back(ey_ik);
-		        angRow.push_back(ez_ik);
+		            angRow.push_back(ex_ik);
+		            angRow.push_back(ey_ik);
+		            angRow.push_back(ez_ik);
 			
-		        angRow.push_back(angle_phi);
+		            angRow.push_back(angle_phi);
 		  
-		        bond_angle_v.push_back(angRow);
+		            bond_angle_v.push_back(angRow);
 		  
-		        z++;
-		    }
+		            z++;
+		            }
+	            }
 	        }
-	    }
         }
     }
 
@@ -164,7 +164,7 @@ void bond_angle_f(int number_atoms) {
             cout << bond_angle_v[i][j] << "    ";
         }
         
-	cout << endl;
+	    cout << endl;
 	
     }
 
