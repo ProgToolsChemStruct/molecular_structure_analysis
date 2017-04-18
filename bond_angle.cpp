@@ -12,143 +12,160 @@
 
 using namespace std;
 
-extern int totalatoms;
-extern vector< vector<string> > vector_coords;  //referring to vector "vector_coords" in extraction.cpp
+extern int totalatoms;  //int totalatoms in extraction.cpp
+extern vector< vector<string> > vector_coords;  //2D vector "vector_coords" in extraction.cpp
 
-void atom_distance(vector< vector<string> > & vector_coords) {
-		   
+typedef vector<int> Row;
+typedef vector<double> dblRow;
+typedef vector<Row> Matrix;
+typedef vector<dblRow> dblMatrix;
+    dblMatrix R(totalatoms,dblRow(totalatoms));
+    Matrix bond_exist(totalatoms,Row(totalatoms));
+
+vector<double> angRow;
+vector< vector<double> > bond_angle_v;
+
+void atom_distance(int number_atoms) {
+
+    ofstream outputfile;
     ofstream log;
+    outputfile.open("outputfile.txt", ios::app);
     log.open("log.txt", ios::app);
 
-    cout <<"Interatomic distances (in Angstroms): " << endl;
+    cout << "Interatomic distances (in Angstroms): " << endl;
+    log << "Interatomic distances (in Angstroms): " << endl;
+    outputfile << "Interatomic distances (in Angstroms): " << endl;
 
-    int i, j, k, l;
-    string atom1, atom2, atom3, atom4;
+    int i, j;
+    string atom1, atom2;
     string x1_string, x2_string, y1_string, y2_string, z1_string, z2_string;
     double x1_double, x2_double, y1_double, y2_double, z1_double, z2_double;
     double distance;
-    vector< vector<double> > R;
-    vector<double> distance_vector;
 
-    for(i = 0; i < totalatoms; i++) {
-        for(j = i + 1; j < totalatoms; j++) {
-            for(k = j + 1; k < totalatoms; k++) {
-                for(l = k + 1; l < totalatoms; l++) {
-                    atom1 = (vector_coords[i][0]);
-                    atom2 = (vector_coords[j][0]);
-                    atom3 = (vector_coords[k][0]);
-                    atom4 = (vector_coords[l][0]);
-                    x1_string = (vector_coords[i][2]);
-                    x2_string = (vector_coords[j][2]);
-                    y1_string = (vector_coords[i][3]);
-                    y2_string = (vector_coords[j][3]);
-                    z1_string = (vector_coords[i][4]);
-                    z2_string = (vector_coords[j][4]);
+    for(i = 0; i < number_atoms; i++) {
+        for(j = i + 1; j < number_atoms; j++) {
+	
+            atom1 = (vector_coords[i][0]);
+            atom2 = (vector_coords[j][0]);
+            x1_string = (vector_coords[i][2]);
+            x2_string = (vector_coords[j][2]);
+            y1_string = (vector_coords[i][3]);
+            y2_string = (vector_coords[j][3]);
+            z1_string = (vector_coords[i][4]);
+            z2_string = (vector_coords[j][4]);
 
-                    x1_double = atof(x1_string.c_str());
-                    x2_double = atof(x2_string.c_str());
-                    y1_double = atof(y1_string.c_str());
-                    y2_double = atof(y2_string.c_str());
-                    z1_double = atof(z1_string.c_str());
-                    z2_double = atof(z2_string.c_str());
+            x1_double = atof(x1_string.c_str());
+            x2_double = atof(x2_string.c_str());
+            y1_double = atof(y1_string.c_str());
+            y2_double = atof(y2_string.c_str());
+            z1_double = atof(z1_string.c_str());
+            z2_double = atof(z2_string.c_str());
 
-                    distance = (sqrt(
-                                    ((pow(x2_double - x1_double, 2))) +
-                                    ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
-                                    ((pow(z2_double - z1_double, 2)))));
+            distance = (sqrt(
+                            ((pow(x2_double - x1_double, 2))) +
+                            ((pow(y2_double - y1_double, 2))) +  //calculation of interatomic distances
+                            ((pow(z2_double - z1_double, 2)))));
 
-                    distance_vector.push_back(distance);
-                    R.push_back(distance_vector);
-
-                    cout << atom1 << "  " << atom2 << "   " << distance << endl;
-                }
-            }
+            R[i][j] = distance;
+	    
+	    if(distance < 1.55) {
+	        bond_exist[i][j] = 1;
+	    } else {
+	        bond_exist[i][j] = 0;
+              }
+	      
+     	    cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+            log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+            outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
         }
     }
+
 }
 
-void unit_vects(int i, int j, 
-                double x1_double, double x2_double, 
-		double y1_double, double y2_double, 
-		double z1_double, double z2_double, 
-		vector< vector<double> > & R, 
-		vector< vector<string> > & vector_coords) {
+double unit_vectors(int a1, int a2, int col) {
 
+    int number_atoms;
+    string x1_string, x2_string;
+    double x1_double, x2_double;
+    double ex;
+
+    x1_string = (vector_coords[a1][col]);
+    x2_string = (vector_coords[a2][col]);
+    x1_double = atof(x1_string.c_str());
+    x2_double = atof(x2_string.c_str());
+    
+    ex = ((-(x2_double - x1_double)) / R[a1][a2]);
+    
+    return ex;
+
+}
+
+void bond_angle_f(int number_atoms) {
+
+    ofstream outputfile;
+    ofstream log;
+    outputfile.open("outputfile.txt", ios::app);
+    log.open("log.txt", ios::app);
+
+    int z = 0;
     double ex_ij, ey_ij, ez_ij;
-    double ex_jk, ey_jk, ez_jk;
-    double ex_kl, ey_kl, ez_kl;
-    vector<double> e_ij;
-    vector<double> e_jk;
-    vector<double> e_kl;
-    vector< vector<double> > unit_vectors;
-
-    cout << "Bond angles (in degrees): " << endl;
-
-    for(i = 0; i < totalatoms; i++) {
-        for(j = i + 1; j < totalatoms; j++) {
-            if(R[i][j] < 1.55) {
-                ex_ij = ((-(x2_double - x1_double)) / R[i][j]);
-                    e_ij.push_back(ex_ij);
-                ey_ij = ((-(y2_double - y1_double)) / R[i][j]);
-                    e_ij.push_back(ey_ij);
-                ez_ij = ((-(z2_double - z1_double)) / R[i][j]);
-                    e_ij.push_back(ez_ij);
-
-                unit_vectors.push_back(e_ij);
-
-                ex_jk = ((-(x2_double - x1_double)) / R[i][j]);
-                    e_jk.push_back(ex_jk);
-                ey_jk = ((-(y2_double - y1_double)) / R[i][j]);
-                    e_jk.push_back(ey_jk);
-                ez_jk = ((-(z2_double - z1_double)) / R[i][j]);
-                    e_jk.push_back(ez_jk);
-
-                unit_vectors.push_back(e_jk);
-
-                ex_kl = ((-(x2_double - x1_double)) / R[i][j]);
-                    e_kl.push_back(ex_kl);
-                ey_kl = ((-(y2_double - y1_double)) / R[i][j]);
-                    e_kl.push_back(ey_kl);
-                ez_kl = ((-(z2_double - z1_double)) / R[i][j]);
-                    e_kl.push_back(ez_kl);
-
-                unit_vectors.push_back(e_kl);
-            }
-        }
-    }
-}
-
-void bond_angle(int i, int j, int k, 
-                string atom1, string atom2, string atom3, 
-		vector< vector<double> > & R, 
-		vector< vector<double> > & unit_vectors, 
-		vector< vector<string> > & vector_coords) {
-
-    double x1_unit, x2_unit, y1_unit, y2_unit, z1_unit, z2_unit;
+    double ex_ik, ey_ik, ez_ik;
     double angle_phi;
-    vector<double> angles_vector;
+  
+    cout << "Bond angles (in degrees): " << endl;
+    log << "Bond angles (in degrees): " << endl;
+    outputfile << "Bond angles (in degrees): " << endl;
 
-    for(i = 0; i < totalatoms; i ++) {
-        for( j = i + 1; j < totalatoms; j++) {
-            for(k = j + 1; k < totalatoms; k++) {
-                if(R[i][j] < 1.55) {
-                    x1_unit = (unit_vectors[0][i]);  //ex_ij unit vector
-                    x2_unit = (unit_vectors[0][j]);  //ex_jk unit vector
-                    y1_unit = (unit_vectors[1][i]);  //ey_ij unit vector
-                    y2_unit = (unit_vectors[1][j]);  //ey_jk unit vector
-                    z1_unit = (unit_vectors[2][i]);  //ez_ij unit vector
-                    z2_unit = (unit_vectors[2][j]);  //ez_jk unit vector
+    for(int i = 0; i < number_atoms; i++) {
+        for(int j = i + 1; j < number_atoms; j++) {
+	    if(bond_exist[i][j] == 1) {
+	        for(int k = j + 1; k < number_atoms; k++) {
+		    if(bond_exist[i][k] == 1) {
+		      
+		        angRow.clear();
+		      
+		        ex_ij = unit_vectors(i,j,2);
+		        ey_ij = unit_vectors(i,j,3);
+		        ez_ij = unit_vectors(i,j,4);
+		      
+		        ex_ik = unit_vectors(i,k,2);
+		        ey_ik = unit_vectors(i,k,3);
+		        ez_ik = unit_vectors(i,k,4);			
 
-                    angle_phi = (acos(
-		                 x1_unit * x2_unit +
-                                 y1_unit * y2_unit +  //calculation of bond angle
-                                 z1_unit * z2_unit));
-
-                    angles_vector.push_back(angle_phi);
-
-                    cout << atom1 << "  " << atom2 << "  " << atom3 << "   " << angle_phi << endl;
-                }
-            }
+		        angle_phi = (acos(ex_ij * ex_ik +
+			                  ey_ij * ey_ik +  //calculation of bond angle
+			                  ez_ij * ez_ik));
+		  
+		        angRow.push_back(i);
+		        angRow.push_back(j);
+		        angRow.push_back(k);
+			
+		        angRow.push_back(ex_ij);
+		        angRow.push_back(ey_ij);
+		        angRow.push_back(ez_ij);
+			
+		        angRow.push_back(ex_ik);
+		        angRow.push_back(ey_ik);
+		        angRow.push_back(ez_ik);
+			
+		        angRow.push_back(angle_phi);
+		  
+		        bond_angle_v.push_back(angRow);
+		  
+		        z++;
+		    }
+	        }
+	    }
         }
     }
+
+    for(int i = 0; i < bond_angle_v.size(); i++) {
+        for(int j = 0; j < 10; j++) {
+            cout << bond_angle_v[i][j] << "    ";
+        }
+        
+	cout << endl;
+	
+    }
+
 }
