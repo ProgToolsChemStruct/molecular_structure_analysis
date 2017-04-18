@@ -69,17 +69,6 @@ int main(int argc, char* argv[]) {
         cout << "Error occured in printing the coordinates.\n";
     }
 
-    //Open the file bond_length.cpp and check that it opened
-    bond_length.open("bond_length.cpp");
-    if (!bond_length.is_open()) {
-         cout << "Error: Unable to open bond_length file.";
-	       return 1;
-    }
-    
-    //Close the file bond_length.cpp
-    bond_length.close();
-    cout << "Bond length calculation complete." ;
-
     //Calculate the model's total mass
     double model_mass = calculate_total_mass();
 
@@ -92,10 +81,28 @@ int main(int argc, char* argv[]) {
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
 
     //Output the calculated interatomic distances
-    Bond_Length model;
-    model.atom_dist();
+    extern vector< vector<string> > vector_coords;
+    
+    int number_atoms = vector_coords.size();
+    
+    atom_distance(number_atoms);
+    
+    extern vector< vector<double> > R;
+    extern vector< vector<int> > bond_exist;
+    
+    for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
+        for(int j = i + 1; j < number_atoms; j++) {
+            cout << bond_exist[i][j] << "    ";
+        }
+        
+	    cout << endl;
+	
+    }
         
     //Calculate the molecule's bond angles
+    extern vector< vector<double> > bond_angle_v;
+    
+    bond_angle_f(number_atoms);
     
     //Calculate the molecule's dihedral angles
     

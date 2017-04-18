@@ -14,14 +14,10 @@
 
 using namespace std;
 
-//header content
-class Bond_Angle {
-private:
+void atom_distance(int number_atoms);
 
-
-public:
-void atom_dist();
-		 
-void angle_phi();
-};	       
+double unit_vectors(int a1, int a2, int col);
+		
+void bond_angle_f(int number_atoms);
+      
 #endif //BOND_ANGLE_H
