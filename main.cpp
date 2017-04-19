@@ -85,8 +85,31 @@ int main(int argc, char* argv[]) {
     model.atom_dist();
     
     //Output Bond numbers of atoms
+    extern vector< vector<string> > vector_coords;
+    
+    int number_atoms = vector_coords.size();
+    
+    atom_distance(number_atoms);
+    
+    extern vector< vector<double> > R;
+    extern vector< vector<int> > bond_exist;
+    
+    for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
+        for(int j = i + 1; j < number_atoms; j++) {
+            cout << bond_exist[i][j] << "    ";
+        }
         
+	    cout << endl;
+	
+    }
+        
+    //Output the number of bonds between atoms
+     
+    
     //Calculate the molecule's bond angles
+    extern vector< vector<double> > bond_angle_v;
+    
+    bond_angle_f(number_atoms);
     
     //Calculate the molecule's dihedral angles
     
