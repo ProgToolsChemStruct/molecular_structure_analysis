@@ -31,8 +31,8 @@
 #include "dihedral_angle.h"
 #include "elements.h"
 #include "bond_length.h"
-//#include "bond_number.h"
-//#include "distance.h"
+#include "bond_number.h"
+
 
 
 using namespace std;
@@ -69,17 +69,6 @@ int main(int argc, char* argv[]) {
         cout << "Error occured in printing the coordinates.\n";
     }
 
-    //Open the file bond_length.cpp and check that it opened
-    bond_length.open("bond_length.cpp");
-    if (!bond_length.is_open()) {
-         cout << "Error: Unable to open bond_length file.";
-	       return 1;
-    }
-    
-    //Close the file bond_length.cpp
-    bond_length.close();
-    cout << "Bond length calculation complete." ;
-
     //Calculate the model's total mass
     double model_mass = calculate_total_mass();
 
@@ -94,6 +83,8 @@ int main(int argc, char* argv[]) {
     //Output the calculated interatomic distances
     Bond_Length model;
     model.atom_dist();
+    
+    //Output Bond numbers of atoms
         
     //Calculate the molecule's bond angles
     
