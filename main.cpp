@@ -3,7 +3,7 @@
  *
  * Welcome to the Gaussian Optimization Analytical Tool (GOAT) documentation site!
  * Users may find relevant info related to this program, a program designed to provide
- * structural analyses of biomolecules successfully optimized using Gaussian software.
+ * structural analyses of molecules successfully optimized using Gaussian software.
  *
  * @short   Main program
  * @file    main.cpp
@@ -11,10 +11,10 @@
  * @param   none
  * @return  0 on success
  *
- * The purpose of this program is to provide preliminary structural information on biomolecules
- * optimized using Gaussian computational chemistry software.  Structural and chemical properties
- * identified include: element identification, bond length, bond angles, and dihedral
- * angles.  Input of the file to be analyzed will result in an output file listing all the structural
+ * The purpose of this program is to provide preliminary structural information on molecules
+ * optimized using Gaussian computational chemistry software. Structural and chemical properties
+ * identified include: element identification, bond length, bond angles, and torsion
+ * angles. Input of the file to be analyzed will result in an output file listing all the structural
  * information of the molecule.
  */
 
@@ -28,8 +28,8 @@
 #include "extraction.h"
 #include "center_of_mass.h"
 #include "bond_angle.h"
-#include "dihedral_angle.h"
-#include "elements.h"
+#include "torsion_angle.h"
+//#include "elements.h"
 //#include "bond_length.h"
 //#include "bond_number.h"
 #include "distance.h"
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 
     ofstream logfile;
     fstream bond_angle;
-    fstream dihedral_angle;
+    fstream torsion_angle;
     fstream bond_length;
 
     //Check that inputfile was directed into the command line
@@ -81,28 +81,22 @@ int main(int argc, char* argv[]) {
 
     //Output the calculated interatomic distances
     extern vector< vector<string> > vector_coords;
-    
-    int number_atoms = vector_coords.size();
-    
-    atom_distance(number_atoms);
+    extern int number_atoms;
+    atom_distance_f(number_atoms);
     
     extern vector< vector<double> > R;
     extern vector< vector<int> > bond_exist;
     
     for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
-        for(int j = i + 1; j < number_atoms; j++) {
+        for(int j = 0; j < number_atoms; j++) {
             cout << bond_exist[i][j] << "    ";
         }
-        
 	cout << endl;
-	
     }
-        
+
     //Calculate the molecule's bond angles
-    extern vector< vector<double> > bond_angle_v;
-    
     bond_angle_f(number_atoms);
     
     //Calculate the molecule's dihedral angles
-    
+    torsion_angle_f(number_atoms);
 }
