@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
     }
         
     //Output the number of bonds between atoms
-     
+    extern int bond_number;   
     
     //Calculate the molecule's bond angles
     extern vector< vector<double> > bond_angle_v;
