@@ -1,5 +1,3 @@
-#include <iostream>
-
 /** 
   *@file elements_h
   *@author Hannah Lozano
@@ -9,6 +7,7 @@
   * The prupose of this file is to calculate the distance between atoms and if the distance is less tha 1.55 angstroms they are bonded
   **/
   
+//header guard
 #ifndef BOND_LENGTH_H
 #define BOND_LENGTH_H
 
