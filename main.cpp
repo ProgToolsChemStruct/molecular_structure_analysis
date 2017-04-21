@@ -31,8 +31,8 @@
 #include "dihedral_angle.h"
 #include "elements.h"
 #include "bond_length.h"
-//#include "bond_number.h"
-//#include "distance.h"
+#include "bond_number.h"
+
 
 
 using namespace std;
@@ -81,6 +81,10 @@ int main(int argc, char* argv[]) {
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
 
     //Output the calculated interatomic distances
+    //Bond_Length model;
+    //model.atom_distance();
+    
+    //Output Bond numbers of atoms
     extern vector< vector<string> > vector_coords;
     
     int number_atoms = vector_coords.size();
@@ -99,6 +103,9 @@ int main(int argc, char* argv[]) {
 	
     }
         
+    //Output the number of bonds between atoms  
+    number_bonds();
+    
     //Calculate the molecule's bond angles
     extern vector< vector<double> > bond_angle_v;
     
