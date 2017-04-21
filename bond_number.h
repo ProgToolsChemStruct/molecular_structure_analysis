@@ -21,18 +21,20 @@
 #include "bond_number.h"
 #include "bond_length.h"
 
-int dist_calc (int i , int j); 
+int dist_calc (int i , int j);
 
 /**
- *This function does just the interatomic distance calculations for the bond      *nuumber calculations. 
- *It has a direct return instead of an output to the screen 
+ *This function does just the interatomic distance calculations for the bond
+ *nuumber calculations.
+ *It has a direct return instead of an output to the screen
  *in the main file.
  */
 
-int number_bonds(int dist_calc);
+void number_bonds();
 
 /**
- *This function uses the dist_calc function above to determine the exact number   *of bonds between atoms that are bound to each other.
+ *This function uses the dist_calc function above to determine the exact number
+ *of bonds between atoms that are bound to each other.
  */
      
 

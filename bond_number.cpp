@@ -4,13 +4,14 @@
 #include <vector>
 #include <cmath>
 #include <cstdlib>
+#include <sstream>
 
 #include "bond_number.h"
 #include "bond_length.h"
 
 using namespace std;
 
-extern int bond_distance; //from bond_length 
+extern int bond_distance; //from bond_length
 extern int totalatoms; //referencing totalatoms in extraction.cpp
 extern vector< vector<string> > vector_coords;
 extern int i, j; //reference to bond_length
@@ -41,20 +42,20 @@ int dist_calc(int i , int j) {
 	    return distance; //direct return of distance vs output to screen in bond_length
 }
 
-int number_bonds() {   
+void number_bonds() {
     
     ofstream log;
     log.open("log.txt", ios::app);
-    
+
     cout << "Bond numbers between atoms: " << endl;
-     
+       
     for (int i=0; i < vector_coords.size(); i++) {
     int counter = 0;
-        for (int j=i+1; j <vector_coords.size(); j++) {
+        for (int j=0; j <vector_coords.size(); j++) {
             if (j == i) continue;
 	    double distance = 0.00;
 	    distance = dist_calc(i,j);
-	    if (distance , 1.55) {
+	    if (distance < 1.55) {
 	    counter++;
 	    }
         }
