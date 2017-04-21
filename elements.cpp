@@ -6,30 +6,6 @@
 using namespace std; 
 
 //reference header from elements.h 
-       
-enum elements_hydrogen_to_argon {
-   
-    HYDROGEN,
-    HELIUM,
-    LITHIUM,
-    BERLLYIUM,
-    BORON,
-    CARBON,
-    NITROGEN,
-    OXYGEN,
-    FLUORINE,
-    NEON,
-    SODIUM,
-    MAGNESIUM,
-    ALUMINUM,
-    SILICON,
-    PHOSPHOROUS,
-    SULFUR,
-    CHLORINE,
-    ARGON,
-
-};
-    
 elements_hydrogen_to_argon element;
 
 string elements_to_string (elements_hydrogen_to_argon d) { 
