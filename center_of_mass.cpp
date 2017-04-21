@@ -45,7 +45,7 @@ double calculate_total_mass () {
     extern vector< vector<string> > vector_coords;
     double total_mass = 0.00;
 
-    for(int i = 0; i < vector_coords.size(); i++)
+    for(size_t i = 0; i < vector_coords.size(); i++)
     {
         int element_number;
         element_number = symbol_to_atomic_number(vector_coords[i][0]);
@@ -97,7 +97,7 @@ double calc_prod_coords_mass(int position)
         }
     }
 
-    for (int i = 0; i < vector_coords.size(); i++)
+    for (size_t i = 0; i < vector_coords.size(); i++)
     {
         double element_mass;
         string coordinate_string;

@@ -19,7 +19,6 @@
 #include <cstdlib>
 
 #include "bond_number.h"
-#include "bond_length.h"
 
 int dist_calc (int i , int j);
 

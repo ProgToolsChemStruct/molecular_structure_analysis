@@ -63,18 +63,17 @@ void atom_distance_f(int number_atoms) {
 
            //making sure vector is initialized from either direction to avoid "nan"
             R[i][j] = distance;
-	          R[j][i] = distance;
+	    R[j][i] = distance;
 
-	          if(distance < 1.55) {
-	              bond_exist[i][j] = 1;
-		            bond_exist[j][i] = 1;
-	          } else {
-	                bond_exist[i][j] = 0;
-		              bond_exist[j][i] = 0;
-              }
-           }
-
-     	    cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+	    if(distance < 1.55) {
+	        bond_exist[i][j] = 1;
+		bond_exist[j][i] = 1;
+	     } else {
+	           bond_exist[i][j] = 0;
+		   bond_exist[j][i] = 0;
+             }
+           
+     	  cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
           log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
           outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
         }
@@ -86,7 +85,7 @@ void atom_distance_f(int number_atoms) {
         for(int j = i + 1; j < number_atoms; j++) {
             log << bond_exist[i][j] << "    ";
         }
-	          log << endl;
+	log << endl;
     }
 }
 
@@ -170,7 +169,7 @@ void display_bond_angles(int number_atoms) {
     log.open("log.txt", ios::app);
 
     //found all bond angles, now time to display them
-    for(int i = 0; i < bond_angle_v.size(); i++) {
+    for(size_t i = 0; i < bond_angle_v.size(); i++) {
 
         double a1_double = (bond_angle_v[i][0]);
 	      double a2_double = (bond_angle_v[i][1]);
@@ -216,7 +215,7 @@ log << "Torsion angles (in degrees): " << endl;
 outputfile << "Torsion angles (in degrees): " << endl;
 
 //scan bond angle vector from top to bottom looking for torsion angles
-    for(int ba = 0; ba < bond_angle_v.size(); ba++) {
+    for(size_t ba = 0; ba < bond_angle_v.size(); ba++) {
        int i = (bond_angle_v[ba][0]);
        int j = (bond_angle_v[ba][1]);
        int k = (bond_angle_v[ba][2]);
@@ -227,26 +226,26 @@ outputfile << "Torsion angles (in degrees): " << endl;
        //search for all atoms that bond to k that are not i
            for(int l = 0; l < number_atoms; l++) {
                if(l != i && l != k) {
-	                 if(bond_exist[k][l] == 1) {
+	           if(bond_exist[k][l] == 1) {
 	       
-	                     torRow.clear();
+	               torRow.clear();
 	       
-	                     double ex_ij = (bond_angle_v[ba][3]);
+	                           double ex_ij = (bond_angle_v[ba][3]);
 		                   double ey_ij = (bond_angle_v[ba][4]);
 		                   double ez_ij = (bond_angle_v[ba][5]);
 		                   double ex_ik = (bond_angle_v[ba][6]);
-                       double ey_ik = (bond_angle_v[ba][7]);
-                       double ez_ik = (bond_angle_v[ba][8]);
+                                   double ey_ik = (bond_angle_v[ba][7]);
+                                   double ez_ik = (bond_angle_v[ba][8]);
 		                   double ex_kl = (unit_vectors(k,l,2));
 		                   double ey_kl = (unit_vectors(k,l,3));
 		                   double ez_kl = (unit_vectors(k,l,4));
 
-                       double angle_jik = bond_angle_v[ba][9];
+                                   double angle_jik = bond_angle_v[ba][9];
 
 		                   double angle_phi_ikl = ((acos(ex_kl * ex_ik +
-			                                               ey_kl * ey_ik +  //calculation of bond angle between atoms i-k-l
-			                                               ez_kl * ez_ik))
-                                                     * (180/3.14159));
+			                                         ey_kl * ey_ik +  //calculation of bond angle between atoms i-k-l
+			                                         ez_kl * ez_ik))
+                                                                 * (180/3.14159));
 
                        double ex_ijk = ((ey_ij * ez_ik) - (ez_ij * ey_ik));
                        double ey_ijk = ((ez_ij * ex_ik) - (ex_ij * ez_ik));    
@@ -338,8 +337,8 @@ outputfile << "Torsion angles (in degrees): " << endl;
 		                     torRow.push_back(ey_ik);
 		                     torRow.push_back(ez_ik);
 		                     torRow.push_back(ex_jl);
-                         torRow.push_back(ey_jl);
-                         torRow.push_back(ez_jl);
+                                     torRow.push_back(ey_jl);
+                                     torRow.push_back(ez_jl);
 		                     torRow.push_back(angle_jik);
 		                     torRow.push_back(angle_phi_ijl);
 		                     torRow.push_back(tau_ijkl);
@@ -361,7 +360,7 @@ void display_torsion_angles(int number_atoms) {
 
     //found all torsion angles, now time to display them
     //scan torsion angles vector displaying all found torsion angles
-    for(int i = 0; i < dihedral_angle_v.size(); i++) {
+    for(size_t i = 0; i < dihedral_angle_v.size(); i++) {
         double a1_double = (dihedral_angle_v[i][0]);
 	      double a2_double = (dihedral_angle_v[i][1]);
 	      double a3_double = (dihedral_angle_v[i][2]);
