@@ -10,17 +10,14 @@ CPPFLAGS = -Wall
 
 all: main
 
-main: main.o extraction.o center_of_mass.o bond_length.o bond_angle.o bond_number.o
-	${CC} ${CPPFLAGS} main.o extraction.o center_of_mass.o bond_length.o bond_angle.o bond_number.o -o main
+main: main.o extraction.o center_of_mass.o bond_angle.o bond_number.o
+	${CC} ${CPPFLAGS} main.o extraction.o center_of_mass.o bond_angle.o bond_number.o -o main
 
 extraction: extraction.o
 	${CC} ${CPPFLAGS} extraction.o
 
 center_of_mass: center_of_mass.o
 	${CC} ${CPPFLAGS} center_of_mass.o
-	
-bond_length: bond_length.o
-	${CC} ${CPPFLAGS} bond_length.o
 	
 bond_angle: bond_angle.o
 	${CC} ${CPPFLAGS} bond_angle.o
