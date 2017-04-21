@@ -18,5 +18,11 @@ void atom_distance_f(int number_atoms);
 double unit_vectors(int a1, int a2, int col);
 		
 void bond_angle_f(int number_atoms);
-      
+
+void display_bond_angles(int number_atoms);
+
+void torsion_angle_f(int number_atoms);
+
+void display_torsion_angles(int number_atoms);
+
 #endif //BOND_ANGLE_H
