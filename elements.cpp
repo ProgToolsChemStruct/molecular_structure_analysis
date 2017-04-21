@@ -6,8 +6,7 @@
 using namespace std; 
 
 //reference header from elements.h 
- 
-//enum file for elements that will be called on in distance.cpp       
+       
 enum elements_hydrogen_to_argon {
    
     HYDROGEN,

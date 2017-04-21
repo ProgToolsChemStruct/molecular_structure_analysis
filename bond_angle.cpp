@@ -63,19 +63,20 @@ void atom_distance_f(int number_atoms) {
 
            //making sure vector is initialized from either direction to avoid "nan"
             R[i][j] = distance;
-	    R[j][i] = distance;
+	          R[j][i] = distance;
 
-	    if(distance < 1.55) {
-	        bond_exist[i][j] = 1;
-		bond_exist[j][i] = 1;
-	    } else {
-	        bond_exist[i][j] = 0;
-		bond_exist[j][i] = 0;
+	          if(distance < 1.55) {
+	              bond_exist[i][j] = 1;
+		            bond_exist[j][i] = 1;
+	          } else {
+	                bond_exist[i][j] = 0;
+		              bond_exist[j][i] = 0;
               }
-	      
+           }
+
      	    cout << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
-            log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
-            outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+          log << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
+          outputfile << atom1 << "  " << atom2 << "    " << R[i][j] << endl;
         }
     }
 
@@ -85,7 +86,7 @@ void atom_distance_f(int number_atoms) {
         for(int j = i + 1; j < number_atoms; j++) {
             log << bond_exist[i][j] << "    ";
         }
-	log << endl;
+	          log << endl;
     }
 }
 
@@ -120,45 +121,45 @@ void bond_angle_f(int number_atoms) {
 
         //scan columnns of ith row to look for atom that bonds to ith atom
         for(int j = 0; j < number_atoms; j++) {
-	    if(bond_exist[i][j] == 1) {
+	          if(bond_exist[i][j] == 1) {
 
                 //scan columns of ith row seeking second atom that bonds to ith atom
-	        for(int k = j + 1; k < number_atoms; k++) {
+	              for(int k = j + 1; k < number_atoms; k++) {
 
                     //found two atoms that bond to i, therefore have an angle to calculate
-		    if(bond_exist[i][k] == 1) {
+		                if(bond_exist[i][k] == 1) {
 		      
-		        angRow.clear();
+		                    angRow.clear();
 		      
-		        double ex_ij = unit_vectors(i,j,2);
-		        double ey_ij = unit_vectors(i,j,3);
-		        double ez_ij = unit_vectors(i,j,4);
-		        double ex_ik = unit_vectors(i,k,2);
-		        double ey_ik = unit_vectors(i,k,3);
-		        double ez_ik = unit_vectors(i,k,4);			
+                            double ex_ij = unit_vectors(i,j,2);
+		                        double ey_ij = unit_vectors(i,j,3);
+		                        double ez_ij = unit_vectors(i,j,4);
+		                        double ex_ik = unit_vectors(i,k,2);
+		                        double ey_ik = unit_vectors(i,k,3);
+		                        double ez_ik = unit_vectors(i,k,4);			
 
-		        double angle_phi = ((acos(ex_ij * ex_ik +
-			                          ey_ij * ey_ik +  //calculation of bond angle between atoms j-i-k
-			                          ez_ij * ez_ik))
-                                                  * (180/3.14159));
+		                        double angle_phi = ((acos(ex_ij * ex_ik +
+			                                                ey_ij * ey_ik +  //calculation of bond angle between atoms j-i-k
+			                                                ez_ij * ez_ik))
+                                                      * (180/3.14159));
 
-                        angRow.push_back(i);
-		        angRow.push_back(j);
-		        angRow.push_back(k);
-		        angRow.push_back(ex_ij);
-		        angRow.push_back(ey_ij);
-		        angRow.push_back(ez_ij);			
-		        angRow.push_back(ex_ik);
-		        angRow.push_back(ey_ik);
-		        angRow.push_back(ez_ik);			
-		        angRow.push_back(angle_phi);		  
-		        bond_angle_v.push_back(angRow);		  
-		        z++;
-		    }
-	        }
-	    }
-        }
-    }
+                            angRow.push_back(i);
+		                        angRow.push_back(j);
+		                        angRow.push_back(k);
+		                        angRow.push_back(ex_ij);
+		                        angRow.push_back(ey_ij);
+		                        angRow.push_back(ez_ij);			
+		                        angRow.push_back(ex_ik);
+		                        angRow.push_back(ey_ik);
+		                        angRow.push_back(ez_ik);			
+		                        angRow.push_back(angle_phi);		  
+		                        bond_angle_v.push_back(angRow);		  
+		                        z++;
+		                    }
+                    }
+               }
+          }
+     }
 }
 
 void display_bond_angles(int number_atoms) {
@@ -170,30 +171,31 @@ void display_bond_angles(int number_atoms) {
 
     //found all bond angles, now time to display them
     for(int i = 0; i < bond_angle_v.size(); i++) {
+
         double a1_double = (bond_angle_v[i][0]);
-	double a2_double = (bond_angle_v[i][1]);
-	double a3_double = (bond_angle_v[i][2]);
-	int a1_int = a1_double;
-	int a2_int = a2_double;
-	int a3_int = a3_double;
-	string a1_string = (vector_coords[a1_int][0]);
-	string a2_string = (vector_coords[a2_int][0]);
-	string a3_string = (vector_coords[a3_int][0]);	
+	      double a2_double = (bond_angle_v[i][1]);
+	      double a3_double = (bond_angle_v[i][2]);
+	      int a1_int = a1_double;
+	      int a2_int = a2_double;
+	      int a3_int = a3_double;
+	      string a1_string = (vector_coords[a1_int][0]);
+	      string a2_string = (vector_coords[a2_int][0]);
+	      string a3_string = (vector_coords[a3_int][0]);	
 	
-	cout << a1_string << "  " << a2_string << "  " << a3_string << "  ";
-	log << a1_string << "  " << a2_string << "  " << a3_string << "  ";
-	outputfile << a1_string << "  " << a2_string << "  " << a3_string << "  ";
+	      cout << a1_string << "  " << a2_string << "  " << a3_string << "  ";
+	      log << a1_string << "  " << a2_string << "  " << a3_string << "  ";
+	      outputfile << a1_string << "  " << a2_string << "  " << a3_string << "  ";
         log << a1_int << "  "   << a2_int << "  " << a3_int << "    ";
-	log << bond_angle_v[i][3] << "  ";
-	log << bond_angle_v[i][4] << "  ";
-	log << bond_angle_v[i][5] << "  ";
-	log << bond_angle_v[i][6] << "  ";
-	log << bond_angle_v[i][7] << "  ";
-	log << bond_angle_v[i][8] << "  ";
+	      log << bond_angle_v[i][3] << "  ";
+	      log << bond_angle_v[i][4] << "  ";
+	      log << bond_angle_v[i][5] << "  ";
+	      log << bond_angle_v[i][6] << "  ";
+	      log << bond_angle_v[i][7] << "  ";
+	      log << bond_angle_v[i][8] << "  ";
         cout << bond_angle_v[i][9];
-	log << bond_angle_v[i][9];
+	      log << bond_angle_v[i][9];
         outputfile << bond_angle_v[i][9];
-	cout << endl;
+	      cout << endl;
         log << endl;
         outputfile << endl;
     }
@@ -225,25 +227,25 @@ outputfile << "Torsion angles (in degrees): " << endl;
        //search for all atoms that bond to k that are not i
            for(int l = 0; l < number_atoms; l++) {
                if(l != i && l != k) {
-	           if(bond_exist[k][l] == 1) {
+	                 if(bond_exist[k][l] == 1) {
 	       
-	               torRow.clear();
+	                     torRow.clear();
 	       
-	               double ex_ij = (bond_angle_v[ba][3]);
-		       double ey_ij = (bond_angle_v[ba][4]);
-		       double ez_ij = (bond_angle_v[ba][5]);
-		       double ex_ik = (bond_angle_v[ba][6]);
+	                     double ex_ij = (bond_angle_v[ba][3]);
+		                   double ey_ij = (bond_angle_v[ba][4]);
+		                   double ez_ij = (bond_angle_v[ba][5]);
+		                   double ex_ik = (bond_angle_v[ba][6]);
                        double ey_ik = (bond_angle_v[ba][7]);
                        double ez_ik = (bond_angle_v[ba][8]);
-		       double ex_kl = (unit_vectors(k,l,2));
-		       double ey_kl = (unit_vectors(k,l,3));
-		       double ez_kl = (unit_vectors(k,l,4));
+		                   double ex_kl = (unit_vectors(k,l,2));
+		                   double ey_kl = (unit_vectors(k,l,3));
+		                   double ez_kl = (unit_vectors(k,l,4));
 
                        double angle_jik = bond_angle_v[ba][9];
 
-		       double angle_phi_ikl = ((acos(ex_kl * ex_ik +
-			                             ey_kl * ey_ik +  //calculation of bond angle between atoms i-k-l
-			                             ez_kl * ez_ik))
+		                   double angle_phi_ikl = ((acos(ex_kl * ex_ik +
+			                                               ey_kl * ey_ik +  //calculation of bond angle between atoms i-k-l
+			                                               ez_kl * ez_ik))
                                                      * (180/3.14159));
 
                        double ex_ijk = ((ey_ij * ez_ik) - (ez_ij * ey_ik));
@@ -261,91 +263,92 @@ outputfile << "Torsion angles (in degrees): " << endl;
                                           (sin(angle_jik)*sin(angle_phi_ikl)))  //calculation of torsion angles (tau)
                                           * (180/3.14159);
 		   
-		       torRow.push_back(i);
-		       torRow.push_back(j);
-		       torRow.push_back(k);
-		       torRow.push_back(l);
-		       torRow.push_back(ex_ij);
-		       torRow.push_back(ey_ij);
-		       torRow.push_back(ez_ij);
-		       torRow.push_back(ex_ik);
-		       torRow.push_back(ey_ik);
-		       torRow.push_back(ez_ik);
-		       torRow.push_back(ex_kl);
+		                   torRow.push_back(i);
+		                   torRow.push_back(j);
+		                   torRow.push_back(k);
+		                   torRow.push_back(l);
+		                   torRow.push_back(ex_ij);
+		                   torRow.push_back(ey_ij);
+		                   torRow.push_back(ez_ij);
+		                   torRow.push_back(ex_ik);
+		                   torRow.push_back(ey_ik);
+		                   torRow.push_back(ez_ik);
+		                   torRow.push_back(ex_kl);
                        torRow.push_back(ey_kl);
                        torRow.push_back(ez_kl);
-		       torRow.push_back(angle_jik);
-		       torRow.push_back(angle_phi_ikl);
-		       torRow.push_back(tau_ijkl);
+		                   torRow.push_back(angle_jik);
+		                   torRow.push_back(angle_phi_ikl);
+		                   torRow.push_back(tau_ijkl);
 		  
-		       dihedral_angle_v.push_back(torRow);
+		                   dihedral_angle_v.push_back(torRow);
+	                  }
 	            }
-	        }
-	    }
-        }
+	      }
+  }
 
 
         //search for all torsion angles connected to j, but do not find duplicate mirror image torsion angle
         if(j > i) {
             for(int l = 0; l < number_atoms; l++) {
-               if(l != i && l != j) {
-	           if(bond_exist[j][l] == 1) {
+                if(l != i && l != j) {
+	                  if(bond_exist[j][l] == 1) {
 	       
-	               torRow.clear();
+	                       torRow.clear();
 	       
-	               double ex_ij = (bond_angle_v[ba][3]);
-		       double ey_ij = (bond_angle_v[ba][4]);
-		       double ez_ij = (bond_angle_v[ba][5]);
-		       double ex_ik = (bond_angle_v[ba][6]);
-                       double ey_ik = (bond_angle_v[ba][7]);
-                       double ez_ik = (bond_angle_v[ba][8]);
-		       double ex_jl = (unit_vectors(j,l,2));
-		       double ey_jl = (unit_vectors(j,l,3));
-		       double ez_jl = (unit_vectors(j,l,4));
+	                       double ex_ij = (bond_angle_v[ba][3]);
+		                     double ey_ij = (bond_angle_v[ba][4]);
+		                     double ez_ij = (bond_angle_v[ba][5]);
+		                     double ex_ik = (bond_angle_v[ba][6]);
+                         double ey_ik = (bond_angle_v[ba][7]);
+                         double ez_ik = (bond_angle_v[ba][8]);
+		                     double ex_jl = (unit_vectors(j,l,2));
+		                     double ey_jl = (unit_vectors(j,l,3));
+		                     double ez_jl = (unit_vectors(j,l,4));
 		   
-		       double angle_jik = bond_angle_v[ba][9];
+		                     double angle_jik = bond_angle_v[ba][9];
 		   
-		       double angle_phi_ijl = ((acos(ex_jl * ex_ik +
-			                             ey_jl * ey_ik +  //calculation of bond angle with conversion from radians to degrees
-			                             ez_jl * ez_ik)) * (180/3.14159));
+		                     double angle_phi_ijl = ((acos(ex_jl * ex_ik +
+			                                                 ey_jl * ey_ik +  //calculation of bond angle with conversion from radians to degrees
+			                                                 ez_jl * ez_ik))
+                                                       * (180/3.14159));
 
-                       double ex_ijk = ((ey_ij * ez_ik) - (ez_ij * ey_ik));
-                       double ey_ijk = ((ez_ij * ex_ik) - (ex_ij * ez_ik));    
-                       double ez_ijk = ((ex_ij * ey_ik) - (ey_ij * ex_ik));    
-                       double ex_ijl = ((ey_ik * ez_jl) - (ez_ik * ey_jl));    
-                       double ey_ijl = ((ez_ik * ex_jl) - (ex_ik * ez_jl));    
-                       double ez_ijl = ((ex_ik * ey_jl) - (ey_ik * ex_jl));
+                         double ex_ijk = ((ey_ij * ez_ik) - (ez_ij * ey_ik));
+                         double ey_ijk = ((ez_ij * ex_ik) - (ex_ij * ez_ik));    
+                         double ez_ijk = ((ex_ij * ey_ik) - (ey_ij * ex_ik));    
+                         double ex_ijl = ((ey_ik * ez_jl) - (ez_ik * ey_jl));    
+                         double ey_ijl = ((ez_ik * ex_jl) - (ex_ik * ez_jl));    
+                         double ez_ijl = ((ex_ik * ey_jl) - (ey_ik * ex_jl));
     
-                       double exx = (ex_ijk * ex_ijl);
-                       double eyy = (ey_ijk * ey_ijl);    
-                       double ezz = (ez_ijk * ez_ijl);
+                         double exx = (ex_ijk * ex_ijl);
+                         double eyy = (ey_ijk * ey_ijl);    
+                         double ezz = (ez_ijk * ez_ijl);
     
-                       double tau_ijkl = ((exx + eyy + ezz) / 
-                                          (sin(angle_jik)*sin(angle_phi_ijl)))  //calculation of torsion angles (tau)
-                                          * (180/3.14159);
+                         double tau_ijkl = ((exx + eyy + ezz) / 
+                                            (sin(angle_jik)*sin(angle_phi_ijl)))  //calculation of torsion angles (tau)
+                                            * (180/3.14159);
 		   
-		       torRow.push_back(i);
-		       torRow.push_back(j);
-		       torRow.push_back(k);
-		       torRow.push_back(l);
-		       torRow.push_back(ex_ij);
-		       torRow.push_back(ey_ij);
-		       torRow.push_back(ez_ij);
-		       torRow.push_back(ex_ik);
-		       torRow.push_back(ey_ik);
-		       torRow.push_back(ez_ik);
-		       torRow.push_back(ex_jl);
-                       torRow.push_back(ey_jl);
-                       torRow.push_back(ez_jl);
-		       torRow.push_back(angle_jik);
-		       torRow.push_back(angle_phi_ijl);
-		       torRow.push_back(tau_ijkl);
+		                     torRow.push_back(i);
+		                     torRow.push_back(j);
+		                     torRow.push_back(k);
+		                     torRow.push_back(l);
+		                     torRow.push_back(ex_ij);
+		                     torRow.push_back(ey_ij);
+		                     torRow.push_back(ez_ij);
+		                     torRow.push_back(ex_ik);
+		                     torRow.push_back(ey_ik);
+		                     torRow.push_back(ez_ik);
+		                     torRow.push_back(ex_jl);
+                         torRow.push_back(ey_jl);
+                         torRow.push_back(ez_jl);
+		                     torRow.push_back(angle_jik);
+		                     torRow.push_back(angle_phi_ijl);
+		                     torRow.push_back(tau_ijkl);
 		  
-		       dihedral_angle_v.push_back(torRow);
+		                     dihedral_angle_v.push_back(torRow);
+	                    }
+	                }
 	            }
-	        }
-	    }
-        }
+         }
     }
 }
 
@@ -360,26 +363,26 @@ void display_torsion_angles(int number_atoms) {
     //scan torsion angles vector displaying all found torsion angles
     for(int i = 0; i < dihedral_angle_v.size(); i++) {
         double a1_double = (dihedral_angle_v[i][0]);
-	double a2_double = (dihedral_angle_v[i][1]);
-	double a3_double = (dihedral_angle_v[i][2]);
-	double a4_double = (dihedral_angle_v[i][3]);
-	int a1_int = a1_double;
-	int a2_int = a2_double;
-	int a3_int = a3_double;
-	int a4_int = a4_double;
-	string a1_string = (vector_coords[a1_int][0]);
-	string a2_string = (vector_coords[a2_int][0]);
-	string a3_string = (vector_coords[a3_int][0]);
-	string a4_string = (vector_coords[a4_int][0]);	
+	      double a2_double = (dihedral_angle_v[i][1]);
+	      double a3_double = (dihedral_angle_v[i][2]);
+	      double a4_double = (dihedral_angle_v[i][3]);
+	      int a1_int = a1_double;
+	      int a2_int = a2_double;
+	      int a3_int = a3_double;
+	      int a4_int = a4_double;
+	      string a1_string = (vector_coords[a1_int][0]);
+	      string a2_string = (vector_coords[a2_int][0]);
+	      string a3_string = (vector_coords[a3_int][0]);
+	      string a4_string = (vector_coords[a4_int][0]);	
 	
-	cout << a1_string << "  " << a2_string << "  " << a3_string << "  " << a4_string << "  ";
+	      cout << a1_string << "  " << a2_string << "  " << a3_string << "  " << a4_string << "  ";
         log << a1_string << "  " << a2_string << "  " << a3_string << "  " << a4_string << "  ";
         outputfile << a1_string << "  " << a2_string << "  " << a3_string << "  " << a4_string << "  ";
-	log << a1_int << "  " << a2_int << "  " << a3_int << "  " << a4_int << "    ";
+	      log << a1_int << "  " << a2_int << "  " << a3_int << "  " << a4_int << "    ";
         cout << dihedral_angle_v[i][15];
         log << dihedral_angle_v[i][15];
         outputfile << dihedral_angle_v[i][15];
-	cout << endl;
+	      cout << endl;
         log << endl;
         outputfile << endl;
     }

@@ -9,12 +9,12 @@
   */ 
 #include <stdlib.h>     /* exit, EXIT_FAILURE */  
   
+//header guard
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
-
-using namespace std; 
     
 enum elements_hydrogen_to_argon {
+   
     HYDROGEN,
     HELIUM,
     LITHIUM,
@@ -32,32 +32,18 @@ enum elements_hydrogen_to_argon {
     PHOSPHOROUS,
     SULFUR,
     CHLORINE,
-    ARGON 
-};
-    
-elements_hydrogen_to_argon element;
+    ARGON,
 
-string elements_to_string (elements_hydrogen_to_argon d) { 
-     
-    if (element == HYDROGEN   ) return "Hydrogen";
-    if (element == HELIUM     ) return "Helium";
-    if (element == LITHIUM    ) return "Lithium";
-    if (element == BERLLYIUM  ) return "Beryllium";
-    if (element == BORON      ) return "Boron";
-    if (element == CARBON     ) return "Carbon";
-    if (element == NITROGEN   ) return "Nitrogen";
-    if (element == OXYGEN     ) return "Oxygen";
-    if (element == FLUORINE   ) return "Fluorine";
-    if (element == NEON       ) return "Neon";
-    if (element == SODIUM     ) return "Sodium";
-    if (element == MAGNESIUM  ) return "Magnesium";
-    if (element == ALUMINUM   ) return "Aluminum";
-    if (element == SILICON    ) return "Silicon";
-    if (element == PHOSPHOROUS) return "Phosphorous";
-    if (element == SULFUR     ) return "Sulfur";
-    if (element == CHLORINE   ) return "Chlorine";
-    if (element == ARGON      ) return "Argon";  
-    cout << "Non-specified element present";
-    /* exit, EXIT_FAILURE */      
-}
+};
+   
+/**This function takes elements Hydrogen to Argon and converts them into a  
+ *number between 0 and 17. 
+ */
+   
+string elements_to_string (elements_hydrogen_to_argon d);
+
+/**This function takes the enumerated list number assignments for the elements 
+ *and translated it back to the element words.
+ */
+
 #endif //ELEMENTS_H 
