@@ -24,7 +24,7 @@ double double_x1, double_x2, double_y1, double_y2, double_z1, double_z2;  //xyz 
 vector<double> atomic_distance;  //creation of 2D vector for interatomic distances
 extern vector< vector<int> > bond_exist;  //creation of 2D vector: 1 for bond exists and 0 for bond does not exist
     
-void Bond_Length::atom_dist() {
+void Bond_Length::atom_distance() {
     ofstream log;
     log.open("log.txt", ios::app);
 
@@ -49,11 +49,11 @@ void Bond_Length::atom_dist() {
             double_z2 = atof(string_z2.c_str());
 
             double distance = (sqrt(
-                              ((pow(double_x2 - double_x1, 2))) + 
+                              ((pow(double_x2 - double_x1, 2))) +
                               ((pow(double_y2 - double_y1, 2))) +  //calculation of interatomic distances
                               ((pow(double_z2 - double_y2, 2)))));
 		
-            atomic_distance.push_back(distance); //temporary array for calculated distance	
+            atomic_distance.push_back(distance); //temporary array for calculated distance
 	         		
             cout << string_atom1 << "  " << string_atom2 << "   " << distance << endl;
             }

@@ -19,7 +19,7 @@ private:
 
 
 public:
-void atom_dist();
+void atom_distance();
 		 
-};	       
+};
 #endif //BOND_LENGTH_H
