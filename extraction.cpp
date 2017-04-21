@@ -16,7 +16,6 @@ int extract_input(const char *inputfile) {
     string header1 = "Redundant internal coordinates found in file";
     string footer1 = "Recover connectivity data from disk.";
 
-    int i;
     int count_line = 0;
     
     vector<string> temp_vector;
@@ -78,9 +77,9 @@ int print_vector_coords() {
     cout << "Model Parameters:" << endl << vector_coords.size() << endl;
     outputfile << "Model Parameters:" << endl << vector_coords.size() << endl;
 
-    for(int i = 0; i < vector_coords.size(); i++) {
+    for(size_t i = 0; i < vector_coords.size(); i++) {
 
-        for (int j = 0; j < vector_coords[i].size(); j++) {
+        for (size_t j = 0; j < vector_coords[i].size(); j++) {
             cout << vector_coords[i][j] << "     ";
             log << vector_coords[i][j] << "     ";
             outputfile << vector_coords[i][j] << "     ";

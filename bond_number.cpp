@@ -7,7 +7,6 @@
 #include <sstream>
 
 #include "bond_number.h"
-#include "bond_length.h"
 
 using namespace std;
 
@@ -49,9 +48,9 @@ void number_bonds() {
 
     cout << "Bond numbers between atoms: " << endl;
        
-    for (int i=0; i < vector_coords.size(); i++) {
+    for (size_t i=0; i < vector_coords.size(); i++) {
     int counter = 0;
-        for (int j=0; j <vector_coords.size(); j++) {
+        for (size_t j=0; j <vector_coords.size(); j++) {
             if (j == i) continue;
 	    double distance = 0.00;
 	    distance = dist_calc(i,j);

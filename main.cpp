@@ -24,15 +24,11 @@
 #include <vector>
 #include <cmath>
 
-#include "main.h"
 #include "extraction.h"
 #include "center_of_mass.h"
 #include "bond_angle.h"
 #include "elements.h"
-#include "bond_length.h"
 #include "bond_number.h"
-
-
 
 using namespace std;
 
@@ -40,7 +36,6 @@ int main(int argc, char* argv[]) {
 
     ofstream logfile;
     fstream bond_angle;
-    fstream bond_length;
 
     //Check that inputfile was directed into the command line
     if (argc < 2) {
@@ -78,10 +73,6 @@ int main(int argc, char* argv[]) {
     cout << "Model's Center of Mass coordinates: " << endl
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
 
-    //Output the calculated interatomic distances
-    //Bond_Length model;
-    //model.atom_distance();
-    
     //Output Bond numbers of atoms
     extern vector< vector<string> > vector_coords;
     int number_atoms = vector_coords.size();
