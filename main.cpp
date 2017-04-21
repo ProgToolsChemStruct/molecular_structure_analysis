@@ -28,7 +28,6 @@
 #include "extraction.h"
 #include "center_of_mass.h"
 #include "bond_angle.h"
-#include "dihedral_angle.h"
 #include "elements.h"
 #include "bond_length.h"
 #include "bond_number.h"
@@ -41,7 +40,6 @@ int main(int argc, char* argv[]) {
 
     ofstream logfile;
     fstream bond_angle;
-    fstream dihedral_angle;
     fstream bond_length;
 
     //Check that inputfile was directed into the command line
@@ -86,31 +84,17 @@ int main(int argc, char* argv[]) {
     
     //Output Bond numbers of atoms
     extern vector< vector<string> > vector_coords;
-    
     int number_atoms = vector_coords.size();
-    
-    atom_distance(number_atoms);
-    
-    extern vector< vector<double> > R;
-    extern vector< vector<int> > bond_exist;
-    
-    for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
-        for(int j = i + 1; j < number_atoms; j++) {
-            cout << bond_exist[i][j] << "    ";
-        }
-        
-	    cout << endl;
-	
-    }
+    atom_distance_f(number_atoms);
         
     //Output the number of bonds between atoms  
     number_bonds();
     
     //Calculate the molecule's bond angles
-    extern vector< vector<double> > bond_angle_v;
-    
     bond_angle_f(number_atoms);
+    display_bond_angles(number_atoms);
     
-    //Calculate the molecule's dihedral angles
-    
+    //Calculate the molecule's torsion angles
+    torsion_angle_f(number_atoms);
+    display_torsion_angles(number_atoms);
 }
