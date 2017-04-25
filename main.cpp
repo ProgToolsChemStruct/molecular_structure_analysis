@@ -26,7 +26,7 @@
 
 #include "extraction.h"
 #include "center_of_mass.h"
-#include "bond_angle.h"
+#include "angles.h"
 #include "elements.h"
 #include "bond_number.h"
 
@@ -35,7 +35,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     ofstream logfile;
-    fstream bond_angle;
+    fstream angles;
 
     //Check that inputfile was directed into the command line
     if (argc < 2) {
@@ -73,13 +73,13 @@ int main(int argc, char* argv[]) {
     cout << "Model's Center of Mass coordinates: " << endl
          << xcoord << "     " << ycoord << "     " << zcoord << endl;
 
-    //Output Bond numbers of atoms
+    //Output interatomic distances (in Angstroms)
     extern vector< vector<string> > vector_coords;
     int number_atoms = vector_coords.size();
     atom_distance_f(number_atoms);
         
     //Output the number of bonds between atoms  
-    number_bonds();
+    //number_bonds();
     
     //Calculate the molecule's bond angles
     bond_angle_f(number_atoms);
