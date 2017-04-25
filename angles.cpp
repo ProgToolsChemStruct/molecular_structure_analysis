@@ -14,7 +14,6 @@ using namespace std;
 
 int total_atoms = 100;  //set max number of atoms to 100
 extern vector< vector<string> > vector_coords;  //2D vector "vector_coords" in extraction.cpp
-extern int number_atoms;
 
 typedef vector<int> Row;
 typedef vector<double> dblRow;
