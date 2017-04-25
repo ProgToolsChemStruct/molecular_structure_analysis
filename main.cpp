@@ -27,7 +27,6 @@
 #include "extraction.h"
 #include "center_of_mass.h"
 #include "angles.h"
-#include "elements.h"
 #include "bond_number.h"
 
 using namespace std;
@@ -79,7 +78,7 @@ int main(int argc, char* argv[]) {
     atom_distance_f(number_atoms);
         
     //Output the number of bonds between atoms  
-    //number_bonds();
+    number_bonds();
     
     //Calculate the molecule's bond angles
     bond_angle_f(number_atoms);
