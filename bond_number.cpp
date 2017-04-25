@@ -10,10 +10,7 @@
 
 using namespace std;
 
-extern int bond_distance; //from bond_length
-extern int totalatoms; //referencing totalatoms in extraction.cpp
 extern vector< vector<string> > vector_coords;
-extern int i, j; //reference to bond_length
 string x1_string, x2_string, y1_string, y2_string, z1_string, z2_string; //xyz coordinates as strings
 double x1_double, x2_double, y1_double, y2_double, z1_double, z2_double; //xyz coordinates as doubles
 
