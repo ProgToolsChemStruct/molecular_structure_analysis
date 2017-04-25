@@ -134,11 +134,11 @@ void bond_angle_f(int number_atoms) {
 		        double ez_ij = unit_vectors(i,j,4);
 		        double ex_ik = unit_vectors(i,k,2);
 		        double ey_ik = unit_vectors(i,k,3);
-		        double ez_ik = unit_vectors(i,k,4);			
+		        double ez_ik = unit_vectors(i,k,4);
 
                         //calculation of bond angles (phi) between atoms j, i and k (in radians)
 		        double angle_phi = ((acos(ex_ij * ex_ik +
-			                          ey_ij * ey_ik + 
+			                          ey_ij * ey_ik +
 			                          ez_ij * ez_ik)));
 
                         //conversion from radians to degrees
@@ -149,12 +149,12 @@ void bond_angle_f(int number_atoms) {
 		        angRow.push_back(k);
 		        angRow.push_back(ex_ij);
 		        angRow.push_back(ey_ij);
-		        angRow.push_back(ez_ij);			
+		        angRow.push_back(ez_ij);
 		        angRow.push_back(ex_ik);
 		        angRow.push_back(ey_ik);
-		        angRow.push_back(ez_ik);			
+		        angRow.push_back(ez_ik);
 		        angRow.push_back(angle_phi);
-                        angRow.push_back(angle_phi_deg);		  
+                        angRow.push_back(angle_phi_deg);
 		        bond_angle_v.push_back(angRow);
 		        z++;
 		    }
