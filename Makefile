@@ -10,7 +10,7 @@ CPPFLAGS = -Wall
 
 all: main
 
-main: main.o extraction.o center_of_mass.o angles.o bond_number.o
+main: main.o extraction.o center_of_mass.o angles.o bond_number.o 
 	${CC} ${CPPFLAGS} main.o extraction.o center_of_mass.o angles.o bond_number.o -o main
 
 extraction: extraction.o
@@ -24,7 +24,7 @@ bond_angle: angles.o
 
 bond_number: bond_number.o
 	$(CC) $(CPPFLAGS) bond_number.o
-
+	
 clean:
 	\rm -f -rf *.o
 
