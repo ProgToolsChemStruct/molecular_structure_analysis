@@ -28,6 +28,7 @@
 #include "center_of_mass.h"
 #include "angles.h"
 #include "bond_number.h"
+//#include "inertia.h"
 
 using namespace std;
 
