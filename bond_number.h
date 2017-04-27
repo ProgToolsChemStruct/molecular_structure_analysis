@@ -1,5 +1,5 @@
 /**
-  * @file elements.cpp
+  * @file bond_number.h
   * @author Hananh Lozano
   * @param none
   * @return bond numbers upon success

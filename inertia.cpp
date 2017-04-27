@@ -3,9 +3,7 @@
 #include <iomanip>
 #include <cstdio>
 #include <cmath>
-//#include <Eigen/Dense>
-//#include <Eigen/Eigenvalues>
-//#include <Eigen/Core>
+#include <vector>
 
 #include "inertia.h"
 #include "angles.h"
@@ -13,14 +11,16 @@
 using namespace Eigen;
 
 extern vector< vector<string> >vector_coords; //vector in extration.cpp 
-inertia_v = vector_coords.asDiagonal()
-DiagonalMatrix<Scalar,SizeAtCompileTime> diagle(size);
-
-typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> Matrix;
-typedef Eigen::Matrix<double, Eigen::Dynamic, 1>Vector;
-
+typedef std::vector< std::vector<double > inertia_m;
+inertia_m(size3, std::vector<double>(size3));   //turning vector_coords to doubles to matrix inertia_m
+    
 using namespace std;
 
+double tolerance = 1.0e-20;
+int jtop;
+double del, hi2, hj2, 
+
+//calc inertia tensors    
 void calc_inertia() {
 
     ofstream outpulfile;
@@ -30,21 +30,45 @@ void calc_inertia() {
     
     cout << "Moment of inertia tensor (amu bohr^2): " << endl;
     log << "Moment of inertia tensor (amu bohr^2): " << endl;
-    outputfile << "Moment of inertia temsor (amu bohr^2); " << endl;
+    outputfile << "Moment of inertia temsor (amu bohr^2); " << endl
     
-    Matrix I(3,3);
+    //Initialze diagonals into matrix ineria_m
+    for(int i = 0; i < vector_coords.size(); i++) { 
+	 i2= (vector_coords[i][2])
+	     for (j = i+1; j < vector_coords.size(); j++) {
+	         j2= (vector_coords [i][3])
+		 I[j2] = 0.0;
+		 }
+        I[i2] = 1.0;
+    }
     
-    for(int i = 0; i < vector_coords.size(); i++) {
-	I(0,0) = ((pow(vector_coords[i][3])2) + (pow(vector_coords[i][4])2)));
-	I(1,1) = ((pow(vector_coords[i][2])2) + (pow(vector_coords[i][4])2)));
-	I(2,2) = ((pow(vector_coords[i][2])2) + (pow(vector_coords[i[[4])2)));
-	I(0,1) = ((vector_coords[i][2])*(vector_coords[i][3]));
-	I(0,2) = ((vector_coords[i][2])*(vector_coords[i][4]));
-	I(1,2) = ((vector_coords[i][3])*(vector_coords[i][4]));
-    }	
-    
-    I(1,0) = I(0,1);
-    I(2,0) = I(0,2);
-    I(2,1) = I(1,2);
-    
-     
+    //Check off-diagonal elements
+    do {
+        hmax = 0.0
+        for(i = 1; i < vector_coords.size(); i++) {
+	    jtop = i-1;
+	    for(j = 0; j < vector_coords.size(); j++) {
+	        i2 = (vector_coords[i][2]);
+		j2 = (vector_coords[i][3]);
+		i2j2 = (vector_coords[i][2], vector_coords[i][3]);
+		j2i2 = (vector_coords[i][3]. vector_coords[i][2]);
+		hi2 = H[i2];
+		hj2 = H[j2];
+		hi2j2 = H[i2j2];
+		hsq = pow(hi2j2, 2);
+		
+		if(hsq > hmax)
+		    hmax = hsq;
+		if(hsq < tolerance)
+		    continue; //omit zero H(i2j2)
+		del = hi2 - hj2;
+		sign = 1.0;
+		if(del < 0.0) {
+		    sign = -1.0;
+		    del = -del;
+		}
+		denom = del + sqrt(pow(del,2) + (4.0*hsq));            
+		
+		  			 
+	 
+   

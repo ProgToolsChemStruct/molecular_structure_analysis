@@ -33,7 +33,7 @@ int extract_input(const char *inputfile) {
             //If it's found, skip first two lines
             for(int i = 0; i < 500; i++) {
                 getline(orig_file, line);
-                if(i < 0) continue;
+                if(i < 1) continue;
 
                 //Make sure the string isn't the footer key phrase
                 if (line.find(footer1, 0) == string::npos) {
