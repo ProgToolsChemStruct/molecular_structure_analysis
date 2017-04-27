@@ -8,12 +8,13 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
+#include <cstddef>
 #include "angles.h"
 
 using namespace std;
 
-int total_atoms = 100;  //set max number of atoms to 100
 extern vector< vector<string> > vector_coords;  //2D vector "vector_coords" in extraction.cpp
+size_t total_atoms = 275;  //set max number of atoms to 275 in order to compile gaussian_opt_file
 
 typedef vector<int> Row;
 typedef vector<double> dblRow;
@@ -79,7 +80,7 @@ void atom_distance_f(int number_atoms) {
 
     log << "Bond exist vector (1 for bonding and 0 for non-bonding): " << endl;
 
-    for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
+    for(int i = 0; i < number_atoms; i++) {  
         for(int j = i + 1; j < number_atoms; j++) {
             log << bond_exist[i][j] << "    ";
         }
