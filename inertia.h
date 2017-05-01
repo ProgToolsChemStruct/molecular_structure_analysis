@@ -18,10 +18,10 @@ double calc_inertia_diagonal (int pos1, int pos2);
 double calc_inertia_off_diagonal (int pos1, int pos2);
 /**
  * This function calculates the off-diagonal inertia tensor moments.
- */  
+ */
 void inertia_tensor ();
 /**
  *This function outputs the nine inertia tensor moments to the screen.
  */
 
-#endif //INERTIA_H 
+#endif //INERTIA_H
