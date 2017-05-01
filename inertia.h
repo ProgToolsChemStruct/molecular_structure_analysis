@@ -1,6 +1,6 @@
 /**
  *@file inertia.h
- *@author Hannah Lozano
+ *@author Hannah Lozano and Thomas Summers
  *@param none
  *@return 0 upon success
  *
