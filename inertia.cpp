@@ -14,26 +14,26 @@
     
 using namespace std;
 
-extern vector< vector<string> >vector_coords; //vector in extration.cpp 
+extern vector< vector<string> >vector_coords; //vector in extration.cpp
 
 double calc_inertia_diagonal (int pos1, int pos2) { //calculates diagonal moments of inertia
-double tensor = 0; 
+double tensor = 0;
     for(size_t i=0; i < vector_coords.size(); i++) {
-        string string_val1 = vector_coords[i][pos1]; 
-	string string_val2 = vector_coords[i][pos2]; 
+        string string_val1 = vector_coords[i][pos1];
+	string string_val2 = vector_coords[i][pos2];
 	
 	double double_val1 = atof(string_val1.c_str()); //string to double
 	double double_val2 = atof(string_val2.c_str());
 	
 	double mass = atomic_masses[symbol_to_atomic_number(vector_coords[i][0])];
 	
-	tensor += mass * ((pow(double_val1, 2) + (pow(double_val2, 2)))); 
+	tensor += mass * ((pow(double_val1, 2) + (pow(double_val2, 2))));
 	
 	}
-	return tensor;	 
+	return tensor;
    }
 
-double calc_inertia_off_diagonal (int pos1, int pos2) { //claclulates off-diagonal moments of inertia
+double calc_inertia_off_diagonal (int pos1, int pos2) { //calculates off-diagonal moments of inertia
 double tensor = 0;
     for(size_t i=0; i < vector_coords.size(); i++) {
         string string_val1 = vector_coords[i][pos1];
@@ -50,19 +50,19 @@ double tensor = 0;
 	return tensor;
     }
 	    
-//calc the elements of the inertia    
+//calc the elements of the inertia
 void inertia_tensor() {
 
      cout << "Inertia tensor: " << endl;
     
-    //get 3x3 matrix with 0 in each element 
+    //get 3x3 matrix with 0 in each element
      double arr[2][2];
 	 for (int i=0; i < 2; i++){
 	     for(int j=0; j < 2; j++){
-	         arr[i][j] = 0.0; 
+	         arr[i][j] = 0.0;
              }
 	 }
-    //add atom's contribution to each tensor element 
+    //add atom's contribution to each tensor element
     arr[0][0] = calc_inertia_diagonal(3,4); //outputs diagonal moments of inertia
     arr[1][1] = calc_inertia_diagonal(2,4);
     arr[2][2] = calc_inertia_diagonal(2,3);
