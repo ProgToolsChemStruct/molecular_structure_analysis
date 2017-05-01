@@ -11,9 +11,17 @@
 #ifndef INERTIA_H
 #define INERTIA_H
 
-void calc_inertia ();
+double calc_inertia_diagonal (int pos1, int pos2);
 /**
- *This function calclulates the inertia principal moments.
+ * This function calculates the diagonal inertia tensor moments.
+ */
+double calc_inertia_off_diagonal (int pos1, int pos2);
+/**
+ * This function calculates the off-diagonal inertia tensor moments.
+ */  
+void inertia_tensor ();
+/**
+ *This function outputs the nine inertia tensor moments to the screen.
  */
 
 #endif //INERTIA_H 

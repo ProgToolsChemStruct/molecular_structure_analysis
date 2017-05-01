@@ -88,4 +88,7 @@ int main(int argc, char* argv[]) {
     //Calculate the molecule's torsion angles
     torsion_angle_f(number_atoms);
     display_torsion_angles(number_atoms);
+    
+    //Call on inertia moments
+    inertia_tensor ();
 }
