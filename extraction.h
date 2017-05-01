@@ -1,9 +1,9 @@
-/** 
+/**
  * @file extraction.h
  * @author Thomas Summers
  * @date 13 April 2017
  * 
- * This file contains the declarations and functions used by the program to extract 
+ * This file contains the declarations and functions used by the program to extract
  * the desired coordinates from the user-specified input file and placing them into
  * an array.
  */

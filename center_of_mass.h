@@ -3,9 +3,9 @@
  * @author Thomas Summers
  * @date 13 April 2017
  *
- * This file contains the declarations for the variables and functions used to 
+ * This file contains the declarations for the variables and functions used to
  * calculate the center of mass of the model in the respective center_of_mass.cpp
- * file.  
+ * file.
  */
 
 #include <vector>
@@ -13,9 +13,9 @@
 #include <stdlib.h>
 
 /**
- * The array is arranged based upon increasing atomic number.  The source for 
- * the atomic masses and other physical constants used throughout this program are 
- * from the National Institute of Standard and Technology website 
+ * The array is arranged based upon increasing atomic number.  The source for
+ * the atomic masses and other physical constants used throughout this program are
+ * from the National Institute of Standard and Technology website
  * (http://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ele=&ascii=html&isotype=some).
  */
 
@@ -43,7 +43,7 @@ const double atomic_masses[] =
 };
 
 /**
- * This function converts an input string @p symb into its respective 
+ * This function converts an input string @p symb into its respective
  * integeric atomic number (i.e. Carbon gets converted to 6).
  */
 
@@ -51,7 +51,7 @@ int symbol_to_atomic_number(std::string symb);
 
 /**
  * This function calculates the total mass of the model stored within the vector @p array.
- * This is achieved by converting the stored string atomic symbols (i.e. C, H, O) into 
+ * This is achieved by converting the stored string atomic symbols (i.e. C, H, O) into
  * their respective atomic numbers via the symbol_to_atomic_number() function and then
  * using this variable to obtain its respecitve stored atomic mass found in the array
  * #atomic_masses.

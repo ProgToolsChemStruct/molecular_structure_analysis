@@ -1,24 +1,23 @@
 /**
-  * @file elements.cpp
+  * @file bond_number.h
   * @author Hananh Lozano
   * @param none
   * @return bond numbers upon success
   *
-  * The purpose of this program is to determine the number of bonds between
+  *The purpose of this program is to determine the number of bonds between
   *bound atoms.
-  */ 
+  */
 
 //header guard
 #ifndef BOND_NUMBER_H
 #define BOND_NUMBER_H
+
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <cmath>
 #include <cstdlib>
-
-#include "bond_number.h"
 
 int dist_calc (int i , int j);
 

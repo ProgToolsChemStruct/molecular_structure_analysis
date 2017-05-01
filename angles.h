@@ -4,7 +4,7 @@
  * @param   none
  * @return  0 on success
  *
- * The purpose of this program is to calculate molecular bond angles (phi) and torsion angles (tau). 
+ * The purpose of this program is to calculate molecular bond angles (phi) and torsion angles (tau).
  */
 
 #ifndef ANGLES_H
@@ -21,7 +21,7 @@ using namespace std;
  */
 void atom_distance_f(int number_atoms);
 
-/** The function "unit_vectors" calculates the unit vectors needed for the later 
+/** The function "unit_vectors" calculates the unit vectors needed for the later
  * bond angle and torsion angle calculations.
  */
 double unit_vectors(int a1, int a2, int col);

@@ -8,13 +8,13 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
+#include <cstddef>
 #include "angles.h"
 
 using namespace std;
 
-int total_atoms = 100;  //set max number of atoms to 100
 extern vector< vector<string> > vector_coords;  //2D vector "vector_coords" in extraction.cpp
-extern int number_atoms;
+size_t total_atoms = 275;  //set max number of atoms to 275 in order to compile gaussian_opt_file
 
 typedef vector<int> Row;
 typedef vector<double> dblRow;
@@ -80,7 +80,7 @@ void atom_distance_f(int number_atoms) {
 
     log << "Bond exist vector (1 for bonding and 0 for non-bonding): " << endl;
 
-    for(int i = 0; i < number_atoms; i++) {  //for loop for debugging purposes (not permanent)
+    for(int i = 0; i < number_atoms; i++) {  
         for(int j = i + 1; j < number_atoms; j++) {
             log << bond_exist[i][j] << "    ";
         }
@@ -135,11 +135,11 @@ void bond_angle_f(int number_atoms) {
 		        double ez_ij = unit_vectors(i,j,4);
 		        double ex_ik = unit_vectors(i,k,2);
 		        double ey_ik = unit_vectors(i,k,3);
-		        double ez_ik = unit_vectors(i,k,4);			
+		        double ez_ik = unit_vectors(i,k,4);
 
                         //calculation of bond angles (phi) between atoms j, i and k (in radians)
 		        double angle_phi = ((acos(ex_ij * ex_ik +
-			                          ey_ij * ey_ik + 
+			                          ey_ij * ey_ik +
 			                          ez_ij * ez_ik)));
 
                         //conversion from radians to degrees
@@ -150,12 +150,12 @@ void bond_angle_f(int number_atoms) {
 		        angRow.push_back(k);
 		        angRow.push_back(ex_ij);
 		        angRow.push_back(ey_ij);
-		        angRow.push_back(ez_ij);			
+		        angRow.push_back(ez_ij);
 		        angRow.push_back(ex_ik);
 		        angRow.push_back(ey_ik);
-		        angRow.push_back(ez_ik);			
+		        angRow.push_back(ez_ik);
 		        angRow.push_back(angle_phi);
-                        angRow.push_back(angle_phi_deg);		  
+                        angRow.push_back(angle_phi_deg);
 		        bond_angle_v.push_back(angRow);
 		        z++;
 		    }

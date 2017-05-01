@@ -85,7 +85,7 @@ double calc_prod_coords_mass(int position)
             log << "X coordinate\n";
             break;
         }
-        case 3: 
+        case 3:
         {
             log << "Y coordinate\n";
             break;

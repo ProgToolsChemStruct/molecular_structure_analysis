@@ -30,10 +30,10 @@ int extract_input(const char *inputfile) {
         if(line.find(header1, 0) != string::npos) {
             log << "Found: " << header1 << " at position " << count_line << endl;
 
-            //If it's found, skip first two lines 
+            //If it's found, skip first two lines
             for(int i = 0; i < 500; i++) {
                 getline(orig_file, line);
-                if(i < 0) continue;
+                if(i < 1) continue;
 
                 //Make sure the string isn't the footer key phrase
                 if (line.find(footer1, 0) == string::npos) {
@@ -51,7 +51,7 @@ int extract_input(const char *inputfile) {
                         vector_coords.push_back(temp_vector);
 
                 //When footer is found, end process
-                } else { 
+                } else {
                       log << "Found: " << footer1 << endl;
                       log << "Search for main coordinates complete." << endl;
                       break;
